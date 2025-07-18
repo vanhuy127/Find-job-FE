@@ -1,6 +1,9 @@
+import { toast } from 'sonner';
+
 import { axiosClient } from '@/config/axios';
 import { END_POINT } from '@/constants';
 import { IJob, IListResponse, IParamsBase, IResponse } from '@/interface';
+import { JobFormValues } from '@/schema/job.schema';
 
 export const useJobService = () => {
   const getJobs = async (params?: IParamsBase & { province?: string; jobType?: string; level?: string }) => {
@@ -23,9 +26,37 @@ export const useJobService = () => {
     return res.data;
   };
 
+  const createJob = async (data: JobFormValues) => {
+    const res: IResponse<IJob> = await axiosClient.post(END_POINT.COMPANY.JOBS.CREATE, data);
+    if (!res.success) {
+      toast.error(res.error_code);
+
+      return;
+    } else {
+      toast.success(res.message_code);
+
+      return res.data;
+    }
+  };
+
+  const editJob = async (id: string, data: JobFormValues) => {
+    const res: IResponse<IJob> = await axiosClient.put(END_POINT.COMPANY.JOBS.EDIT(id), data);
+    if (!res.success) {
+      toast.error(res.error_code);
+
+      return;
+    } else {
+      toast.success(res.message_code);
+
+      return res.data;
+    }
+  };
+
   return {
     getJobs,
     getJobById,
     getJobsCurrentCompany,
+    createJob,
+    editJob,
   };
 };

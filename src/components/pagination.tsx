@@ -1,7 +1,8 @@
+import { memo, useCallback, useMemo } from 'react';
+
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
-import { memo, useCallback, useMemo } from 'react';
 
 interface PaginationProps {
   currentPage: number;

@@ -12,8 +12,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { SidebarTrigger } from '@/components/ui/sidebar';
-import { Separator } from '../ui/separator';
 
+import { Separator } from '../ui/separator';
 
 const ThemeControl = lazy(() => import('@/components/themeControl'));
 

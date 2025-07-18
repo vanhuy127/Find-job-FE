@@ -45,6 +45,8 @@ export const JOB_TYPE = {
   REMOTE: 'REMOTE',
 };
 
+export const JOB_TYPE_ARRAY = Object.values(JOB_TYPE);
+
 export const JOB_TYPE_SHOWS = {
   [JOB_TYPE.FULL_TIME]: 'Full time',
   [JOB_TYPE.PART_TIME]: 'Part time',
@@ -61,6 +63,8 @@ export const JOB_LEVEL = {
   SENIOR: 'SENIOR',
   LEAD: 'LEAD',
 };
+
+export const JOB_LEVEL_ARRAY = Object.values(JOB_LEVEL);
 
 export const JOB_LEVEL_SHOWS = {
   [JOB_LEVEL.INTERN]: 'Intern',

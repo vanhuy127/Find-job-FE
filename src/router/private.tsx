@@ -27,7 +27,7 @@ const CompanyDashboard = lazy(() => import('@/pages/company/Dashboard'));
 const CompanyInfo = lazy(() => import('@/pages/company/companyInfo'));
 const CompanyJob = lazy(() => import('@/pages/company/job'));
 const CompanyJobDetails = lazy(() => import('@/pages/company/job/Details'));
-
+const ConpanyCreateJob = lazy(() => import('@/pages/company/job/Create'));
 
 const PrivateRoute = React.memo(({ children, roles }: { children: React.ReactNode; roles?: string[] }) => {
   const { user } = useAuthStore();
@@ -78,8 +78,9 @@ const PrivateRoutes: RouteObject[] = [
       { path: ROUTE_PATH.COMPANY.INFO, element: <CompanyInfo /> },
       { path: ROUTE_PATH.COMPANY.JOBS.LIST, element: <CompanyJob /> },
       { path: ROUTE_PATH.COMPANY.JOBS.DETAILS.PATH, element: <CompanyJobDetails /> },
+      { path: ROUTE_PATH.COMPANY.JOBS.CREATE, element: <ConpanyCreateJob /> },
     ],
-  }
+  },
 ];
 
 export default PrivateRoutes;

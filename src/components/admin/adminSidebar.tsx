@@ -1,5 +1,6 @@
 import { useMutation } from '@tanstack/react-query';
 import { LayoutDashboard, LogOut } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 
 import {
   Sidebar,
@@ -15,10 +16,9 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar';
 
+import { ROLE, adminNavigationItems, companyNavigationItems } from '@/constants';
 import { useAuthService } from '@/service/auth.service';
 import { useAuthStore } from '@/store';
-import { useLocation } from 'react-router-dom';
-import { adminNavigationItems, companyNavigationItems, ROLE } from '@/constants';
 
 const AdminSidebar = () => {
   const { open } = useSidebar();
@@ -31,7 +31,6 @@ const AdminSidebar = () => {
   const logoutMutation = useMutation({
     mutationFn: () => logout(),
   });
-
 
   return (
     <Sidebar
@@ -64,11 +63,12 @@ const AdminSidebar = () => {
                     <SidebarMenuButton asChild tooltip={item.title}>
                       <a
                         href={item.url}
-                        className={`flex items-center gap-2  rounded-md px-2 py-1 transition-all duration-300  ${isActive ? 'bg-sidebar-accent font-semibold text-cyan-800' : 'hover:bg-sidebar-accent'
-                          }`}
+                        className={`flex items-center gap-2 rounded-md px-2 py-1 transition-all duration-300 ${
+                          isActive ? 'bg-sidebar-accent font-semibold text-cyan-800' : 'hover:bg-sidebar-accent'
+                        }`}
                       >
                         <item.icon size={64} className="transition-all duration-300" />
-                        {open && <span className="transition-all duration-300 text-base ">{item.title}</span>}
+                        {open && <span className="text-base transition-all duration-300">{item.title}</span>}
                       </a>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
