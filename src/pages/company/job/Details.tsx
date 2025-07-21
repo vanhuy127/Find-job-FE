@@ -28,7 +28,7 @@ const Details = () => {
   const { getJobById } = useJobService();
   const { id } = useParams<{ id: string }>();
   const { data, isLoading } = useQuery({
-    queryKey: ['admin-jobs', id],
+    queryKey: ['company-jobs', id],
     queryFn: () => getJobById(id!),
   });
 
@@ -96,7 +96,7 @@ const Details = () => {
               <Users className="h-8 w-8 text-blue-600" />
               <div>
                 <p className="text-muted-foreground text-sm">Số lượng ứng viên</p>
-                <p className="text-2xl font-bold">{data?.numApplications || 0}</p>
+                <p className="text-2xl font-bold">{data?.numApplicationsApproved}/{data?.numApplications || 0}</p>
               </div>
             </div>
           </CardContent>
@@ -108,7 +108,7 @@ const Details = () => {
               <DollarSign className="h-8 w-8 text-green-600" />
               <div>
                 <p className="text-muted-foreground text-sm">Mức lương tối thiểu</p>
-                <p className="text-2xl font-bold">{(data?.salaryMin || 0) / 1000000}M</p>
+                <p className="text-2xl font-bold">{((data?.salaryMin || 0) / 1000000).toFixed(2)}M</p>
               </div>
             </div>
           </CardContent>
@@ -120,7 +120,7 @@ const Details = () => {
               <TrendingUp className="h-8 w-8 text-purple-600" />
               <div>
                 <p className="text-muted-foreground text-sm">Mức lương tối đa</p>
-                <p className="text-2xl font-bold">{(data?.salaryMax || 0) / 1000000}M</p>
+                <p className="text-2xl font-bold">{((data?.salaryMax || 0) / 1000000).toFixed(2)}M</p>
               </div>
             </div>
           </CardContent>

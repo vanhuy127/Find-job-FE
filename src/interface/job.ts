@@ -12,6 +12,7 @@ export interface IJob {
   jobType: JobType;
   level: JobLevel;
   numApplications: number;
+  numApplicationsApproved: number;
   salaryMin: number;
   salaryMax: number;
   endDate: Date;
@@ -19,8 +20,5 @@ export interface IJob {
   updatedAt: Date;
   province: IProvince;
   company: ICompany;
-  _count: {
-    applications: number;
-  };
   skills: ISkill[];
 }

@@ -52,11 +52,25 @@ export const useJobService = () => {
     }
   };
 
+  const deleteJob = async (id: string) => {
+    const res: IResponse<boolean> = await axiosClient.patch(END_POINT.COMPANY.JOBS.DELETE(id));
+    if (!res.success) {
+      toast.error(res.error_code);
+
+      return;
+    } else {
+      toast.success(res.message_code);
+
+      return res.data;
+    }
+  };
+
   return {
     getJobs,
     getJobById,
     getJobsCurrentCompany,
     createJob,
     editJob,
+    deleteJob,
   };
 };

@@ -50,7 +50,7 @@ const index = () => {
   }, [debouncedSearch, provinceFilter, jobTypeFilter, levelFilter]);
 
   const { data, isLoading } = useQuery({
-    queryKey: ['admin-jobs', page, debouncedSearch, size, provinceFilter, jobTypeFilter, levelFilter],
+    queryKey: ['company-jobs', page, debouncedSearch, size, provinceFilter, jobTypeFilter, levelFilter],
     queryFn: () =>
       getJobsCurrentCompany({
         page,
