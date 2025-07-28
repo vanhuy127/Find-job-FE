@@ -1,4 +1,4 @@
-import { Briefcase, Building, FileText, LayoutDashboard, Settings, Users } from 'lucide-react';
+import { Briefcase, Building, FileText, FileUser, LayoutDashboard, Settings, Users } from 'lucide-react';
 
 import { ROUTE_PATH } from './router';
 
@@ -55,5 +55,10 @@ export const companyNavigationItems = [
     title: 'Việc làm',
     url: ROUTE_PATH.COMPANY.JOBS.LIST,
     icon: Briefcase,
+  },
+  {
+    title: 'Đơn ứng tuyển',
+    url: ROUTE_PATH.COMPANY.RESUMES.LIST,
+    icon: FileUser,
   },
 ];

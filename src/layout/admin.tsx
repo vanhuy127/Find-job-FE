@@ -12,7 +12,7 @@ export const AdminLayout: React.FC<PropsWithChildren> = () => {
 
   return (
     <SidebarProvider defaultOpen={true} style={{ '--sidebar-width': '15rem' } as React.CSSProperties}>
-      <div className="flex min-h-screen w-full transition-all duration-300 ease-in-out">
+      <div className="flex max-h-screen w-full overflow-y-hidden transition-all duration-300 ease-in-out">
         <AdminSidebar />
         <SidebarInset className="flex-1 transition-all duration-300 ease-in-out">
           <AdminHeader />

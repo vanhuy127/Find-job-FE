@@ -5,3 +5,4 @@ export * from './company';
 export * from './province';
 export * from './job';
 export * from './skill';
+export * from './resume';

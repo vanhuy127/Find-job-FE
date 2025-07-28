@@ -12,6 +12,7 @@ import InputCurrency from '@/components/inputCurrency';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 
@@ -27,7 +28,6 @@ import { JobFormValues, jobSchema } from '@/schema/job.schema';
 import { useJobService } from '@/service/job.service';
 import { useProvinceService } from '@/service/province.service';
 import { formatDate, parseDateFromString } from '@/utils';
-import { Label } from '@/components/ui/label';
 
 const EditJob = () => {
   const { id } = useParams();
@@ -149,7 +149,7 @@ const EditJob = () => {
             name="jobType"
             label="Loại công việc"
             renderInput={({ value, onChange }) => (
-              <Select key={form.watch("jobType")} value={String(value)} onValueChange={onChange}>
+              <Select key={form.watch('jobType')} value={String(value)} onValueChange={onChange}>
                 <SelectTrigger>
                   <SelectValue placeholder="Chọn loại công việc" />
                 </SelectTrigger>
@@ -169,7 +169,7 @@ const EditJob = () => {
             name="level"
             label="Cấp bậc"
             renderInput={({ value, onChange }) => (
-              <Select key={form.watch("level")} value={String(value)} onValueChange={onChange}>
+              <Select key={form.watch('level')} value={String(value)} onValueChange={onChange}>
                 <SelectTrigger>
                   <SelectValue placeholder="Chọn cấp bậc" />
                 </SelectTrigger>
@@ -183,7 +183,7 @@ const EditJob = () => {
               </Select>
             )}
           />
-          <div className='grid grid-cols-2 gap-5'>
+          <div className="grid grid-cols-2 gap-5">
             <FormItemCustom
               form={form}
               name="numApplications"
@@ -200,8 +200,16 @@ const EditJob = () => {
               )}
             />
             <div className="grid w-full max-w-sm items-center gap-3">
-              <Label htmlFor="numApplicationsApproved" className='text-gray-400'>Đơn ứng tuyển đã nhận</Label>
-              <Input type="text" id="numApplicationsApproved" placeholder="" value={job?.numApplicationsApproved} disabled />
+              <Label htmlFor="numApplicationsApproved" className="text-gray-400">
+                Đơn ứng tuyển đã nhận
+              </Label>
+              <Input
+                type="text"
+                id="numApplicationsApproved"
+                placeholder=""
+                value={job?.numApplicationsApproved}
+                disabled
+              />
             </div>
           </div>
 

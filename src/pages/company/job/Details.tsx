@@ -15,14 +15,13 @@ import {
 } from 'lucide-react';
 import { useParams } from 'react-router-dom';
 
+import DetailSkeleton from '@/components/detailsSkeleton';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 
 import { JOB_LEVEL_SHOWS, JOB_TYPE_SHOWS } from '@/constants';
 import { useJobService } from '@/service/job.service';
 import { formatDate } from '@/utils';
-
-import JobDetailSkeleton from './components/Skeleton';
 
 const Details = () => {
   const { getJobById } = useJobService();
@@ -48,7 +47,7 @@ const Details = () => {
     return new Date(endDate) < new Date();
   };
 
-  if (isLoading) return <JobDetailSkeleton />;
+  if (isLoading) return <DetailSkeleton />;
 
   return (
     <div className="space-y-6">
@@ -96,7 +95,9 @@ const Details = () => {
               <Users className="h-8 w-8 text-blue-600" />
               <div>
                 <p className="text-muted-foreground text-sm">Số lượng ứng viên</p>
-                <p className="text-2xl font-bold">{data?.numApplicationsApproved}/{data?.numApplications || 0}</p>
+                <p className="text-2xl font-bold">
+                  {data?.numApplicationsApproved}/{data?.numApplications || 0}
+                </p>
               </div>
             </div>
           </CardContent>

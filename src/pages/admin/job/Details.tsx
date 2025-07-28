@@ -15,14 +15,13 @@ import {
 } from 'lucide-react';
 import { useParams } from 'react-router-dom';
 
+import DetailSkeleton from '@/components/detailsSkeleton';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 
 import { JOB_LEVEL_SHOWS, JOB_TYPE_SHOWS } from '@/constants';
 import { useJobService } from '@/service/job.service';
-import { formatDate } from '@/utils';
-
-import JobDetailSkeleton from './components/Skeleton';
+import { formatDate, formatSalary, isDateExpired } from '@/utils';
 
 const Details = () => {
   const { getJobById } = useJobService();
@@ -32,23 +31,7 @@ const Details = () => {
     queryFn: () => getJobById(id!),
   });
 
-  const formatSalary = (min: number, max: number) => {
-    const formatNumber = (num: number) => {
-      if (num >= 1000000) {
-        return `${(num / 1000000).toFixed(1)}M`;
-      }
-
-      return `${(num / 1000).toFixed(0)}K`;
-    };
-
-    return `${formatNumber(min)} - ${formatNumber(max)} VND`;
-  };
-
-  const isJobExpired = (endDate: string) => {
-    return new Date(endDate) < new Date();
-  };
-
-  if (isLoading) return <JobDetailSkeleton />;
+  if (isLoading) return <DetailSkeleton />;
 
   return (
     <div className="space-y-6">
@@ -77,12 +60,12 @@ const Details = () => {
               <div>
                 <p className="text-sm text-green-600">Trạng thái</p>
                 <p className="text-lg font-bold text-green-800">
-                  {isJobExpired(typeof data?.endDate === 'string' ? data.endDate : '')
+                  {isDateExpired(typeof data?.endDate === 'string' ? data.endDate : '')
                     ? 'Đã kết thúc'
                     : 'Đang tuyển dụng'}
                 </p>
               </div>
-              {isJobExpired(typeof data?.endDate === 'string' ? data.endDate : '') ? (
+              {isDateExpired(typeof data?.endDate === 'string' ? data.endDate : '') ? (
                 <XCircle className="h-8 w-8 text-red-600" />
               ) : (
                 <CheckCircle className="h-8 w-8 text-green-600" />
@@ -96,7 +79,9 @@ const Details = () => {
               <Users className="h-8 w-8 text-blue-600" />
               <div>
                 <p className="text-muted-foreground text-sm">Số lượng ứng viên</p>
-                <p className="text-2xl font-bold">{data?.numApplicationsApproved}/{data?.numApplications || 0}</p>
+                <p className="text-2xl font-bold">
+                  {data?.numApplicationsApproved}/{data?.numApplications || 0}
+                </p>
               </div>
             </div>
           </CardContent>
@@ -213,10 +198,10 @@ const Details = () => {
                   <span>Hạn nộp đơn</span>
                 </Label>
                 <p
-                  className={`bg-muted rounded p-3 text-sm ${isJobExpired(typeof data?.endDate === 'string' ? data.endDate : '') ? 'font-medium text-red-600' : ''}`}
+                  className={`bg-muted rounded p-3 text-sm ${isDateExpired(typeof data?.endDate === 'string' ? data.endDate : '') ? 'font-medium text-red-600' : ''}`}
                 >
                   {formatDate(data?.endDate || '')}
-                  {isJobExpired(typeof data?.endDate === 'string' ? data.endDate : '') && ' (Expired)'}
+                  {isDateExpired(typeof data?.endDate === 'string' ? data.endDate : '') && ' (Expired)'}
                 </p>
               </div>
             </div>

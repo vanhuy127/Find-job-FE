@@ -39,5 +39,10 @@ export const END_POINT = {
       EDIT: (id: string) => `/company/job/${id}`,
       DELETE: (id: string) => `/company/job/${id}`,
     },
+    RESUMES: {
+      LIST: '/company/resumes',
+      GET_BY_ID: (id: string) => `/company/resume/${id}`,
+      CHANGE_STATUS: (id: string) => `/company/resume/${id}/change-status`,
+    },
   },
 };

@@ -58,6 +58,13 @@ export const ROUTE_PATH = {
         LINK: (id: string) => `/company/job/${id}/edit`,
       },
     },
+    RESUMES: {
+      LIST: '/company/resume',
+      DETAILS: {
+        PATH: '/company/resume/:id',
+        LINK: (id: string) => `/company/resume/${id}`,
+      },
+    },
   },
   NOT_FOUND: '*',
   UNAUTHORIZE: '/unauthorized',

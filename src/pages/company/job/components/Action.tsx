@@ -1,8 +1,10 @@
 import { memo, useState } from 'react';
 
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { Edit, Eye, Trash } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
+import { ConfirmDialog } from '@/components/confirmDialog';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -14,9 +16,7 @@ import { Separator } from '@/components/ui/separator';
 
 import { ROUTE_PATH } from '@/constants';
 import { IJob } from '@/interface';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { useJobService } from '@/service/job.service';
-import { ConfirmDialog } from '@/components/confirmDialog';
 
 const Action = ({ data }: { data: IJob }) => {
   const navigate = useNavigate();
@@ -52,7 +52,10 @@ const Action = ({ data }: { data: IJob }) => {
             <Edit className="mr-2 h-4 w-4" /> Sửa
           </DropdownMenuItem>
           <Separator />
-          <DropdownMenuItem className="text-destructive flex cursor-pointer items-center px-2 py-[6px]" onClick={() => setOpenConfirm(true)}>
+          <DropdownMenuItem
+            className="text-destructive flex cursor-pointer items-center px-2 py-[6px]"
+            onClick={() => setOpenConfirm(true)}
+          >
             <Trash className="text-destructive mr-2 h-4 w-4" /> Xóa
           </DropdownMenuItem>
         </DropdownMenuContent>

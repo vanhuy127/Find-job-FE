@@ -15,6 +15,7 @@ import {
 } from 'lucide-react';
 import { useParams } from 'react-router-dom';
 
+import DetailSkeleton from '@/components/detailsSkeleton';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -22,8 +23,6 @@ import { Separator } from '@/components/ui/separator';
 
 import { useCompanyService } from '@/service/company.service';
 import { formatDate } from '@/utils';
-
-import CompanyDetailSkeleton from './components/Skeleton';
 
 const Details = () => {
   const { getCompanyById } = useCompanyService();
@@ -57,7 +56,7 @@ const Details = () => {
     }
   };
 
-  if (isLoading) return <CompanyDetailSkeleton />;
+  if (isLoading) return <DetailSkeleton />;
 
   return (
     <div className="space-y-5">

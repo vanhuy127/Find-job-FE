@@ -1,7 +1,7 @@
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Skeleton } from '@/components/ui/skeleton';
 
-const JobDetailSkeleton = () => {
+const DetailSkeleton = () => {
   return (
     <div className="space-y-6 p-6">
       {/* Title */}
@@ -64,4 +64,4 @@ const JobDetailSkeleton = () => {
     </div>
   );
 };
-export default JobDetailSkeleton;
+export default DetailSkeleton;
