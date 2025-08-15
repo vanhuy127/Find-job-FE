@@ -13,6 +13,7 @@ import {
 interface ConfirmDialogProps {
   open: boolean;
   title?: string;
+  type?: 'confirm' | 'warning';
   description?: string | ReactNode;
   confirmText?: string;
   cancelText?: string;
@@ -23,6 +24,7 @@ interface ConfirmDialogProps {
 export const ConfirmDialog = ({
   open,
   title = 'Xác nhận',
+  type = 'warning',
   description = 'Bạn có chắc muốn thực hiện hành động này?',
   confirmText = 'Xác nhận',
   cancelText = 'Hủy',
@@ -40,7 +42,7 @@ export const ConfirmDialog = ({
           <Button variant="outline" className="cursor-pointer" onClick={onCancel}>
             {cancelText}
           </Button>
-          <Button variant="destructive" className="cursor-pointer" onClick={onConfirm}>
+          <Button className={`cursor-pointer ${type === 'confirm' ? 'bg-teal-500' : 'bg-red-500'}`} onClick={onConfirm}>
             {confirmText}
           </Button>
         </DialogFooter>

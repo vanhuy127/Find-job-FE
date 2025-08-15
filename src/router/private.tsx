@@ -21,6 +21,8 @@ const JobDetails = lazy(() => import('@/pages/admin/job/Details'));
 const ListSkills = lazy(() => import('@/pages/admin/skill'));
 const CreateSkill = lazy(() => import('@/pages/admin/skill/Create'));
 const EditSkill = lazy(() => import('@/pages/admin/skill/Edit'));
+const ListCompaniesPending = lazy(() => import('@/pages/admin/companyPending/index'));
+const CompanyPendingDetails = lazy(() => import('@/pages/admin/companyPending/Details'));
 
 //company page
 const CompanyDashboard = lazy(() => import('@/pages/company/Dashboard'));
@@ -68,6 +70,9 @@ const PrivateRoutes: RouteObject[] = [
       { path: ROUTE_PATH.ADMIN.SKILLS.LIST, element: <ListSkills /> },
       { path: ROUTE_PATH.ADMIN.SKILLS.CREATE, element: <CreateSkill /> },
       { path: ROUTE_PATH.ADMIN.SKILLS.EDIT.PATH, element: <EditSkill /> },
+      { path: ROUTE_PATH.ADMIN.COMPANIES.LIST, element: <ListCompanies /> },
+      { path: ROUTE_PATH.ADMIN.COMPANIES.LIST_PENDING, element: <ListCompaniesPending /> },
+      { path: ROUTE_PATH.ADMIN.COMPANIES.DETAILS_PENDING.PATH, element: <CompanyPendingDetails /> },
     ],
   },
   {

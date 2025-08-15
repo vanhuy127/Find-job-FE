@@ -17,7 +17,10 @@ export const END_POINT = {
     },
     COMPANIES: {
       LIST: '/admin/companies',
+      LIST_PENDING: '/admin/companies/pending',
       DETAILS: (id: string) => `/admin/company/${id}`,
+      DETAILS_PENDING: (id: string) => `/admin/company/pending/${id}`,
+      CHANGE_STATUS: (id: string) => `/admin/company/${id}/change-status`,
     },
     JOBS: {
       LIST: '/admin/jobs',

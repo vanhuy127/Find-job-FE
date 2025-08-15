@@ -75,7 +75,6 @@ const Details = () => {
           <div className="mt-2 flex items-center space-x-2">{getStatusBadge()}</div>
         </div>
       </div>
-
       {/* Statistics Cards */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-4">
         <Card>
@@ -89,7 +88,6 @@ const Details = () => {
             </div>
           </CardContent>
         </Card>
-
         <Card>
           <CardContent className="px-4">
             <div className="flex items-center space-x-2">
@@ -102,7 +100,6 @@ const Details = () => {
           </CardContent>
         </Card>
       </div>
-
       {/* Main Content - Combined Information */}
       <Card>
         <CardHeader>
@@ -120,7 +117,6 @@ const Details = () => {
                 </Label>
                 <p className="bg-muted rounded p-2 text-sm">{data?.name}</p>
               </div>
-
               <div className="space-y-2">
                 <Label className="flex items-center space-x-2">
                   <Mail className="h-4 w-4" />
@@ -128,7 +124,6 @@ const Details = () => {
                 </Label>
                 <p className="bg-muted rounded p-2 text-sm">{data?.email}</p>
               </div>
-
               <div className="space-y-2">
                 <Label className="flex items-center space-x-2">
                   <MapPin className="h-4 w-4" />
@@ -136,12 +131,10 @@ const Details = () => {
                 </Label>
                 <p className="bg-muted rounded p-2 text-sm">{data?.address}</p>
               </div>
-
               <div className="space-y-2">
                 <Label>Tỉnh/Thành phố</Label>
                 <p className="bg-muted rounded p-2 text-sm">{data?.province.name}</p>
               </div>
-
               <div className="space-y-2">
                 <Label className="flex items-center space-x-2">
                   <Globe className="h-4 w-4" />
@@ -162,18 +155,15 @@ const Details = () => {
                   )}
                 </p>
               </div>
-
               <div className="space-y-2">
                 <Label>Mã số thuế</Label>
                 <p className="bg-muted rounded p-2 text-sm">{data?.taxCode}</p>
               </div>
             </div>
-
             <div className="space-y-2">
               <Label>Mô tả công ty</Label>
               <p className="bg-muted rounded p-3 text-sm leading-relaxed">{data?.description || 'Chưa có mô tả'}</p>
             </div>
-
             {data?.reasonReject && (
               <Card className="border-red-200 bg-red-50">
                 <CardHeader>
@@ -188,9 +178,7 @@ const Details = () => {
               </Card>
             )}
           </div>
-
           <Separator />
-
           {/* Legal Documents Section */}
           <div className="space-y-4">
             <h3 className="border-b pb-2 text-lg font-semibold">Giấy tờ pháp lý</h3>
@@ -210,9 +198,7 @@ const Details = () => {
               </div>
             </div>
           </div>
-
           <Separator />
-
           {/* History Section */}
           <div className="space-y-4">
             <h3 className="border-b pb-2 text-lg font-semibold">Thông tin thời gian</h3>
@@ -224,7 +210,6 @@ const Details = () => {
                   <span>{formatDate(data.createdAt)}</span>
                 </div>
               )}
-
               {data?.updatedAt && (
                 <div className="flex items-center space-x-2">
                   <Calendar className="h-4 w-4" />

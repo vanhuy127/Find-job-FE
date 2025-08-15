@@ -63,9 +63,8 @@ const AdminSidebar = () => {
                     <SidebarMenuButton asChild tooltip={item.title}>
                       <a
                         href={item.url}
-                        className={`flex items-center gap-2 rounded-md px-2 py-1 transition-all duration-300 ${
-                          isActive ? 'bg-sidebar-accent font-semibold text-cyan-800' : 'hover:bg-sidebar-accent'
-                        }`}
+                        className={`flex items-center gap-2 rounded-md px-2 py-1 transition-all duration-300 ${isActive ? 'bg-sidebar-accent font-semibold text-cyan-800' : 'hover:bg-sidebar-accent'
+                          }`}
                       >
                         <item.icon size={64} className="transition-all duration-300" />
                         {open && <span className="text-base transition-all duration-300">{item.title}</span>}

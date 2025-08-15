@@ -3,7 +3,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import InputField from '@/components/formItem';
+import FormItemCustom from '@/components/formItem';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
@@ -42,7 +42,7 @@ const Create = () => {
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-          <InputField
+          <FormItemCustom
             form={form}
             name="name"
             label="Tên kỹ năng"

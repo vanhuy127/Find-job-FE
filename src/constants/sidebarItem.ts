@@ -1,4 +1,4 @@
-import { Briefcase, Building, FileText, FileUser, LayoutDashboard, Settings, Users } from 'lucide-react';
+import { Briefcase, Building, Building2, FileUser, LayoutDashboard, Lightbulb, Users } from 'lucide-react';
 
 import { ROUTE_PATH } from './router';
 
@@ -26,17 +26,12 @@ export const adminNavigationItems = [
   {
     title: 'Kỹ năng',
     url: ROUTE_PATH.ADMIN.SKILLS.LIST,
-    icon: Briefcase,
+    icon: Lightbulb,
   },
   {
-    title: 'Content',
-    url: '/admin/content',
-    icon: FileText,
-  },
-  {
-    title: 'Settings',
-    url: '/admin/settings',
-    icon: Settings,
+    title: 'Duyệt công ty',
+    url: ROUTE_PATH.ADMIN.COMPANIES.LIST_PENDING,
+    icon: Building2,
   },
 ];
 

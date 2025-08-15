@@ -19,6 +19,11 @@ export const ROUTE_PATH = {
         PATH: '/admin/company/:id',
         LINK: (id: string) => `/admin/company/${id}`,
       },
+      LIST_PENDING: '/admin/pending-company',
+      DETAILS_PENDING: {
+        PATH: '/admin/pending-company/:id',
+        LINK: (id: string) => `/admin/pending-company/${id}`,
+      },
     },
     JOBS: {
       LIST: '/admin/job',
