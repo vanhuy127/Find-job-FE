@@ -14,10 +14,14 @@ import {
 import { SidebarTrigger } from '@/components/ui/sidebar';
 
 import { Separator } from '../ui/separator';
+import { useNavigate } from 'react-router-dom';
+import { ROUTE_PATH } from '@/constants';
 
 const ThemeControl = lazy(() => import('@/components/themeControl'));
 
 const AdminHeader = () => {
+  const navigate = useNavigate();
+
   return (
     <header className="bg-background flex h-[66px] shrink-0 items-center justify-between gap-2 border-b px-4 transition-all duration-300">
       <div className="flex items-center gap-2">
@@ -36,8 +40,8 @@ const AdminHeader = () => {
           <DropdownMenuContent align="end" className="w-56">
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>Settings</DropdownMenuItem>
+            <DropdownMenuItem className='cursor-pointer' onClick={() => navigate(ROUTE_PATH.USER.HOME)}>Trang chủ</DropdownMenuItem>
+            <DropdownMenuItem className='cursor-pointer'>Settings</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
         <ThemeControl />

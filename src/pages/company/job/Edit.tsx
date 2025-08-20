@@ -28,11 +28,14 @@ import { JobFormValues, jobSchema } from '@/schema/job.schema';
 import { useJobService } from '@/service/job.service';
 import { useProvinceService } from '@/service/province.service';
 import { formatDate, parseDateFromString } from '@/utils';
+import { useSkillService } from '@/service/skill.service';
+import MultiSelect from '@/components/admin/multiSelect';
 
 const EditJob = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { editJob, getJobById } = useJobService();
+  const { getSkills } = useSkillService();
   const { getProvinces } = useProvinceService();
 
   const form = useForm<JobFormValues>({
@@ -48,6 +51,7 @@ const EditJob = () => {
       salaryMin: 0,
       salaryMax: 0,
       endDate: formatDate(new Date(), DATE_PATTERN.DATE),
+      skills: [],
     },
   });
 
@@ -69,6 +73,7 @@ const EditJob = () => {
         salaryMin: job.salaryMin,
         salaryMax: job.salaryMax,
         endDate: formatDate(job.endDate, DATE_PATTERN.DATE),
+        skills: job.skills?.map((js) => js.id) || [],
       });
     }
   }, [job, form]);
@@ -76,6 +81,11 @@ const EditJob = () => {
   const { data: provinces } = useQuery({
     queryKey: ['provinces'],
     queryFn: () => getProvinces(),
+  });
+
+  const { data: skills } = useQuery({
+    queryKey: ['skills'],
+    queryFn: () => getSkills(),
   });
 
   const provinceOptions = useMemo(() => {
@@ -212,6 +222,25 @@ const EditJob = () => {
               />
             </div>
           </div>
+
+          <FormItemCustom
+            form={form}
+            name="skills"
+            label="Kỹ năng"
+            renderInput={({ value, onChange }) => (
+              <MultiSelect
+                options={
+                  skills?.data?.map((s) => ({
+                    label: s.name,
+                    value: s.id,
+                  })) || []
+                }
+                value={Array.isArray(value) ? value : value ? [value] : []}
+                onChange={onChange}
+                placeholder="Chọn kỹ năng"
+              />
+            )}
+          />
 
           <FormItemCustom
             form={form}

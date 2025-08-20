@@ -27,10 +27,13 @@ import { JobFormValues, jobSchema } from '@/schema/job.schema';
 import { useJobService } from '@/service/job.service';
 import { useProvinceService } from '@/service/province.service';
 import { formatDate, parseDateFromString } from '@/utils';
+import { useSkillService } from '@/service/skill.service';
+import MultiSelect from '@/components/admin/multiSelect';
 
 const CreateJob = () => {
   const navigate = useNavigate();
   const { createJob } = useJobService();
+  const { getSkills } = useSkillService();
   const { getProvinces } = useProvinceService();
 
   const form = useForm<JobFormValues>({
@@ -46,12 +49,18 @@ const CreateJob = () => {
       salaryMin: 0,
       salaryMax: 0,
       endDate: formatDate(new Date(), DATE_PATTERN.DATE),
+      skills: [],
     },
   });
 
   const { data: provinces } = useQuery({
     queryKey: ['provinces'],
     queryFn: () => getProvinces(),
+  });
+
+  const { data: skills } = useQuery({
+    queryKey: ['skills'],
+    queryFn: () => getSkills(),
   });
 
   const provinceOptions = useMemo(() => {
@@ -171,6 +180,25 @@ const CreateJob = () => {
                 onChange={(e) => {
                   field.onChange(Number(e.target.value));
                 }}
+              />
+            )}
+          />
+
+          <FormItemCustom
+            form={form}
+            name="skills"
+            label="Kỹ năng"
+            renderInput={({ value, onChange }) => (
+              <MultiSelect
+                options={
+                  skills?.data?.map((s) => ({
+                    label: s.name,
+                    value: s.id,
+                  })) || []
+                }
+                value={Array.isArray(value) ? value : value ? [value] : []}
+                onChange={onChange}
+                placeholder="Chọn kỹ năng"
               />
             )}
           />

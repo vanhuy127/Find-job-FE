@@ -24,6 +24,7 @@ export const jobSchema = z
       .number({ invalid_type_error: 'Lương tối đa phải là số' })
       .min(1000, 'Lương tối đa phải lớn hơn hoặc bằng 1.000 đ'),
     endDate: z.string().regex(DOB_REGEX, 'Hạn ứng tuyển phải có định dạng dd-MM-yyyy'),
+    skills: z.array(z.string()).nonempty('Vui lòng chọn ít nhất 1 kỹ năng'),
   })
   .refine((data) => data.salaryMax >= data.salaryMin, {
     message: 'Lương tối đa phải lớn hơn hoặc bằng lương tối thiểu',

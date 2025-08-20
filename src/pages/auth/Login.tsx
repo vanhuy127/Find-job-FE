@@ -69,11 +69,10 @@ const Login = () => {
                   type="email"
                   placeholder="Enter your email"
                   {...register('email')}
-                  className={`border-2 py-3 pr-4 pl-4 transition-all duration-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 ${
-                    errors.email
+                  className={`border-2 py-3 pr-4 pl-4 transition-all duration-200 focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200 ${errors.email
                       ? 'border-red-400 focus:border-red-500 focus:ring-red-200'
                       : 'border-gray-200 hover:border-cyan-300'
-                  }`}
+                    }`}
                 />
               </div>
               {errors.email && (
@@ -93,6 +92,7 @@ const Login = () => {
                 <button
                   type="button"
                   className="text-xs font-medium text-cyan-600 transition-colors hover:text-cyan-500"
+                  tabIndex={-1}
                 >
                   Forgot password?
                 </button>
@@ -103,11 +103,10 @@ const Login = () => {
                   type={showPassword ? 'text' : 'password'}
                   placeholder="Enter your password"
                   {...register('password')}
-                  className={`border-2 py-3 pr-12 pl-4 transition-all duration-200 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 ${
-                    errors.password
+                  className={`border-2 py-3 pr-12 pl-4 transition-all duration-200 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 ${errors.password
                       ? 'border-red-400 focus:border-red-500 focus:ring-red-200'
                       : 'border-gray-200 hover:border-teal-300'
-                  }`}
+                    }`}
                 />
                 <button
                   type="button"

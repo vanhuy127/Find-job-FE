@@ -1,17 +1,28 @@
 import { lazy, useState } from 'react';
 
-import { Menu } from 'lucide-react';
+import { Menu, User } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 import { ROUTE_PATH } from '@/constants/router';
+import { useAuthStore } from '@/store';
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu';
+import { useAuthService } from '@/service/auth.service';
+import { useMutation } from '@tanstack/react-query';
 
 const ThemeControl = lazy(() => import('@/components/themeControl'));
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { logout } = useAuthService();
+
+  const { user } = useAuthStore();
+
+  const logoutMutation = useMutation({
+    mutationFn: () => logout(),
+  });
 
   const navigationItems = [
     { name: 'Trang chủ', href: '/' },
@@ -48,12 +59,32 @@ const Header = () => {
 
           {/* Desktop Actions */}
           <div className="hidden items-center space-x-3 md:flex">
-            <Button
-              asChild
-              className="transform cursor-pointer rounded-lg bg-cyan-600 px-6 py-2 font-medium text-white shadow-sm transition-all duration-200 hover:scale-105 hover:bg-cyan-700 hover:shadow-md dark:bg-cyan-500 dark:hover:bg-cyan-600"
-            >
-              <Link to={ROUTE_PATH.AUTH.LOGIN}>Đăng nhập</Link>
-            </Button>
+            {
+              user ? (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="ghost" size="icon">
+                      <User className="h-4 w-4" />
+                      <span className="sr-only">User menu</span>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="center" className="min-w-30">
+                    <DropdownMenuLabel className='text-center'>Xin chào, {user?.email.split('@')[0]}</DropdownMenuLabel>
+                    <DropdownMenuSeparator />
+                    <DropdownMenuItem className='cursor-pointer flex items-center justify-center'>Tài khoản</DropdownMenuItem>
+                    <DropdownMenuItem className='cursor-pointer flex items-center justify-center' onClick={() => logoutMutation.mutate()}>Đăng xuất</DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <Button
+                  asChild
+                  className="transform cursor-pointer rounded-lg bg-cyan-600 px-6 py-2 font-medium text-white shadow-sm transition-all duration-200 hover:scale-105 hover:bg-cyan-700 hover:shadow-md dark:bg-cyan-500 dark:hover:bg-cyan-600"
+                >
+                  <Link to={ROUTE_PATH.AUTH.LOGIN}>Đăng nhập</Link>
+                </Button>
+              )
+            }
+
             <ThemeControl />
           </div>
 
@@ -95,14 +126,25 @@ const Header = () => {
 
                   {/* Mobile Actions */}
                   <div className="flex flex-col space-y-3 border-t border-purple-200 pt-4 dark:border-purple-700">
-                    <Button
-                      asChild
-                      className="mx-5 mt-4 cursor-pointer rounded-xl bg-cyan-600 font-semibold text-white shadow-lg hover:bg-cyan-700 dark:bg-cyan-500 dark:hover:bg-cyan-600"
-                    >
-                      <Link to={ROUTE_PATH.AUTH.LOGIN} onClick={() => setIsOpen(false)}>
-                        Đăng nhập
-                      </Link>
-                    </Button>
+                    {
+                      user ? (
+                        <Button
+                          className="mx-5 mt-4 cursor-pointer rounded-xl bg-rose-600 font-semibold text-white shadow-lg hover:bg-rose-700 dark:bg-rose-500 dark:hover:bg-rose-600"
+                        >
+                          Đăng xuất
+                        </Button>
+                      ) : (
+                        <Button
+                          asChild
+                          className="mx-5 mt-4 cursor-pointer rounded-xl bg-cyan-600 font-semibold text-white shadow-lg hover:bg-cyan-700 dark:bg-cyan-500 dark:hover:bg-cyan-600"
+                        >
+                          <Link to={ROUTE_PATH.AUTH.LOGIN} onClick={() => setIsOpen(false)}>
+                            Đăng nhập
+                          </Link>
+                        </Button>
+                      )
+                    }
+
                     <div className="flex justify-center p-5">
                       <ThemeControl />
                     </div>

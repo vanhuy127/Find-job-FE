@@ -1,10 +1,10 @@
 import { create } from 'zustand';
 
-import type { User } from '@/interface';
+import type { IUserAccount } from '@/interface';
 
 interface AuthState {
-  user: User | null;
-  setUser: (user: User | null) => void;
+  user: IUserAccount | null;
+  setUser: (user: IUserAccount | null) => void;
 }
 
 export const useAuthStore = create<AuthState>((set) => ({

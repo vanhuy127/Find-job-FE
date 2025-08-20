@@ -19,7 +19,7 @@ import DetailSkeleton from '@/components/detailsSkeleton';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
 
-import { JOB_LEVEL_SHOWS, JOB_TYPE_SHOWS } from '@/constants';
+import { DATE_PATTERN, JOB_LEVEL_SHOWS, JOB_TYPE_SHOWS } from '@/constants';
 import { useJobService } from '@/service/job.service';
 import { formatDate } from '@/utils';
 
@@ -216,7 +216,7 @@ const Details = () => {
                 <p
                   className={`bg-muted rounded p-3 text-sm ${isJobExpired(typeof data?.endDate === 'string' ? data.endDate : '') ? 'font-medium text-red-600' : ''}`}
                 >
-                  {formatDate(data?.endDate || '')}
+                  {formatDate(data?.endDate || '', DATE_PATTERN.DATE)}
                   {isJobExpired(typeof data?.endDate === 'string' ? data.endDate : '') && ' (Expired)'}
                 </p>
               </div>
