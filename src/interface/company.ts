@@ -16,6 +16,7 @@ export interface ICompany {
   createdAt: Date;
   updatedAt: Date;
   accountId: string;
+  jobCount: number;
   account: {
     isLocked: boolean;
   };

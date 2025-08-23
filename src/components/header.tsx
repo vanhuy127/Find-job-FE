@@ -11,6 +11,8 @@ import { useAuthStore } from '@/store';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu';
 import { useAuthService } from '@/service/auth.service';
 import { useMutation } from '@tanstack/react-query';
+import { isRole } from '@/utils';
+import { ROLE } from '@/constants';
 
 const ThemeControl = lazy(() => import('@/components/themeControl'));
 
@@ -71,8 +73,26 @@ const Header = () => {
                   <DropdownMenuContent align="center" className="min-w-30">
                     <DropdownMenuLabel className='text-center'>Xin chào, {user?.email.split('@')[0]}</DropdownMenuLabel>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem className='cursor-pointer flex items-center justify-center'>Tài khoản</DropdownMenuItem>
-                    <DropdownMenuItem className='cursor-pointer flex items-center justify-center' onClick={() => logoutMutation.mutate()}>Đăng xuất</DropdownMenuItem>
+                    {
+                      isRole(ROLE.ADMIN) && (
+                        <DropdownMenuItem className='cursor-pointer flex items-center justify-center'>
+                          <Link to={ROUTE_PATH.ADMIN.DASHBOARD}>Trang quản trị</Link>
+                        </DropdownMenuItem>
+                      )
+                    }
+                    {
+                      isRole(ROLE.COMPANY) && (
+                        <DropdownMenuItem className='cursor-pointer flex items-center justify-center'>
+                          <Link to={ROUTE_PATH.COMPANY.DASHBOARD}>Trang quản trị</Link>
+                        </DropdownMenuItem>
+                      )
+                    }
+                    {
+                      isRole(ROLE.USER) && (
+                        <DropdownMenuItem className='cursor-pointer flex items-center justify-center'>Tài khoản</DropdownMenuItem>
+                      )
+                    }
+                    <DropdownMenuItem className='cursor-pointer flex items-center justify-center text-rose-600' onClick={() => logoutMutation.mutate()}>Đăng xuất</DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
               ) : (

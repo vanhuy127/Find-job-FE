@@ -11,6 +11,14 @@ export const END_POINT = {
   PROVINCE: {
     GET_ALL: '/provinces',
   },
+  USER: {
+    COMPANIES: {
+      LIST: '/companies',
+    },
+    JOBS: {
+      LIST: '/jobs',
+    },
+  },
   ADMIN: {
     USER: {
       GET_ALL: '/admin/users',

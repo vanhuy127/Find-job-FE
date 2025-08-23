@@ -11,6 +11,12 @@ export const useCompanyService = () => {
     return res.data;
   };
 
+  const getCompaniesForUser = async (params?: IParamsBase & { status?: number; province?: string }) => {
+    const res: IListResponse<ICompany> = await axiosClient.get(END_POINT.USER.COMPANIES.LIST, { params });
+
+    return res.data;
+  };
+
   const getCompanyById = async (id: string) => {
     const res: IResponse<ICompany> = await axiosClient.get(END_POINT.ADMIN.COMPANIES.DETAILS(id));
 
@@ -51,5 +57,6 @@ export const useCompanyService = () => {
     getCompanyPendingById,
     getCompaniesPending,
     changeCompanyStatus,
+    getCompaniesForUser,
   };
 };

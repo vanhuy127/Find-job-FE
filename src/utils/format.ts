@@ -35,3 +35,23 @@ export const formatSalary = (min: number, max: number) => {
 export const isDateExpired = (endDate: string) => {
   return new Date(endDate) < new Date();
 };
+
+export const numDateSince = (date: string | Date) => {
+  const inputDate = date instanceof Date ? date : new Date(date);
+  const now = new Date();
+
+  const diffMs = now.getTime() - inputDate.getTime();
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+
+  // tính theo năm & tháng
+  const diffYears = now.getFullYear() - inputDate.getFullYear();
+  const diffMonths = diffYears * 12 + (now.getMonth() - inputDate.getMonth());
+
+  if (diffYears >= 1) {
+    return `${diffYears} năm trước`;
+  } else if (diffMonths >= 1) {
+    return `${diffMonths} tháng trước`;
+  } else {
+    return `${diffDays} ngày trước`;
+  }
+};
