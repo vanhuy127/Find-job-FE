@@ -34,7 +34,7 @@ export const useQueryParams = <T extends Record<string, any>>() => {
       };
 
       const queryString_ = queryString.stringify(mergedParams, {
-        arrayFormat: defaultArrayFormat,
+        arrayFormat: 'comma',
         skipNull: true,
         skipEmptyString: true,
       });

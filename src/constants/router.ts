@@ -7,6 +7,8 @@ export const ROUTE_PATH = {
   USER: {
     ACCOUNT: '/account',
     HOME: '/',
+    LIST_JOBS: '/jobs',
+    LIST_COMPANIES: '/companies',
   },
   ADMIN: {
     DASHBOARD: '/admin/dashboard',

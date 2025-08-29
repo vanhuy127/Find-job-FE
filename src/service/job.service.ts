@@ -12,7 +12,16 @@ export const useJobService = () => {
     return res.data;
   };
 
-  const getJobsForUser = async (params?: IParamsBase & { province?: string; jobType?: string; level?: string }) => {
+  const getJobsForUser = async (
+    params?: IParamsBase & {
+      province?: string;
+      jobType?: string;
+      level?: string;
+      minSalary?: string;
+      maxSalary?: string;
+      skills?: string[];
+    },
+  ) => {
     const res: IListResponse<IJob> = await axiosClient.get(END_POINT.USER.JOBS.LIST, { params });
 
     return res.data;

@@ -27,9 +27,9 @@ const Header = () => {
   });
 
   const navigationItems = [
-    { name: 'Trang chủ', href: '/' },
-    { name: 'Công việc', href: '/products' },
-    { name: 'Đối tác', href: '/services' },
+    { name: 'Trang chủ', href: ROUTE_PATH.USER.HOME },
+    { name: 'Công ty', href: ROUTE_PATH.USER.LIST_COMPANIES },
+    { name: 'Công việc', href: ROUTE_PATH.USER.LIST_JOBS },
   ];
 
   return (
