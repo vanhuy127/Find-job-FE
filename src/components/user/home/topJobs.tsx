@@ -5,11 +5,13 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { useJobService } from '@/service/job.service';
 import { useQuery } from '@tanstack/react-query';
-import { JOB_LEVEL_SHOWS, JOB_TYPE_SHOWS } from '@/constants';
+import { JOB_LEVEL_SHOWS, JOB_TYPE_SHOWS, ROUTE_PATH } from '@/constants';
 import { formatSalary, numDateSince } from '@/utils';
+import { useNavigate } from 'react-router-dom';
 
 const TopJobs = () => {
   const { getJobsForUser } = useJobService();
+  const navigate = useNavigate();
 
   const { data: jobs } = useQuery({
     queryKey: ['user-jobs'],
@@ -98,6 +100,7 @@ const TopJobs = () => {
             variant="outline"
             size="lg"
             className="rounded-xl border-2 border-cyan-500 px-8 py-4 font-semibold text-cyan-600 hover:bg-cyan-500 hover:text-white dark:text-cyan-400"
+            onClick={() => navigate(ROUTE_PATH.USER.LIST_JOBS)}
           >
             Xem tất cả việc làm IT
           </Button>

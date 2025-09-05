@@ -1,10 +1,8 @@
-import { lazy } from 'react';
-
-const Hero = lazy(() => import('@/components/user/home/hero'));
-const Category = lazy(() => import('@/components/user/home/category'));
-const TopCompanies = lazy(() => import('@/components/user/home/topCompanies'));
-const TopJobs = lazy(() => import('@/components/user/home/topJobs'));
-const Starts = lazy(() => import('@/components/user/home/starts'));
+import Category from "@/components/user/home/category";
+import Hero from "@/components/user/home/hero";
+import Starts from "@/components/user/home/starts";
+import TopCompanies from "@/components/user/home/topCompanies";
+import TopJobs from "@/components/user/home/topJobs";
 
 export default function Home() {
   return (

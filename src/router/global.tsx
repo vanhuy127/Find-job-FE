@@ -9,11 +9,14 @@ import Unauthorized from '@/pages/Unauthorized';
 
 const Home = lazy(() => import('@/pages/user/Home'));
 const ListJobs = lazy(() => import('@/pages/user/Jobs'));
+const ListCompanies = lazy(() => import('@/pages/user/Companies'));
 
 const GlobalRoutes: RouteObject[] = [
   {
     element: <DefaultLayout />,
-    children: [{ path: ROUTE_PATH.USER.HOME, element: <Home /> }, { path: ROUTE_PATH.USER.LIST_JOBS, element: <ListJobs /> }],
+    children: [{ path: ROUTE_PATH.USER.HOME, element: <Home /> },
+    { path: ROUTE_PATH.USER.LIST_JOBS, element: <ListJobs /> },
+    { path: ROUTE_PATH.USER.LIST_COMPANIES, element: <ListCompanies /> }],
   },
   {
     element: <BlankLayout />,

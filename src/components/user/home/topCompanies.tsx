@@ -1,11 +1,14 @@
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { ROUTE_PATH } from '@/constants';
 import { useCompanyService } from '@/service/company.service';
 import { useQuery } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
 
 const TopCompanies = () => {
   const { getCompaniesForUser } = useCompanyService();
+  const navigate = useNavigate();
 
   const { data: companies } = useQuery({
     queryKey: ['user-companies'],
@@ -63,21 +66,6 @@ const TopCompanies = () => {
                   </div>
                 </div>
 
-                {/* <div className="mb-4">
-                  <p className="mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">Tech Stack:</p>
-                  <div className="flex flex-wrap gap-1">
-                    {company.techStack.map((tech, index) => (
-                      <Badge
-                        key={index}
-                        variant="outline"
-                        className="border-gray-300 bg-gray-100 text-xs text-gray-600 dark:border-gray-600 dark:bg-gray-700/50 dark:text-gray-300"
-                      >
-                        {tech}
-                      </Badge>
-                    ))}
-                  </div>
-                </div> */}
-
                 <Button className="mt-8 w-full rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 py-3 font-semibold text-white transition-all duration-300 hover:from-cyan-600 hover:to-blue-600">
                   Xem việc làm
                 </Button>
@@ -90,6 +78,7 @@ const TopCompanies = () => {
             variant="outline"
             size="lg"
             className="rounded-xl border-2 border-cyan-500 px-8 py-4 font-semibold text-cyan-600 transition-all duration-300 hover:bg-cyan-500 hover:text-white dark:text-cyan-400"
+            onClick={() => navigate(ROUTE_PATH.USER.LIST_COMPANIES)}
           >
             Xem tất cả công ty tech
           </Button>
