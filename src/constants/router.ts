@@ -7,8 +7,20 @@ export const ROUTE_PATH = {
   USER: {
     ACCOUNT: '/account',
     HOME: '/',
-    LIST_JOBS: '/jobs',
-    LIST_COMPANIES: '/companies',
+    COMPANIES: {
+      LIST: '/company',
+      DETAILS: {
+        PATH: '/company/:id',
+        LINK: (id: string) => `/company/${id}`,
+      },
+    },
+    JOBS: {
+      LIST: '/job',
+      DETAILS: {
+        PATH: '/job/:id',
+        LINK: (id: string) => `/job/${id}`,
+      },
+    },
   },
   ADMIN: {
     DASHBOARD: '/admin/dashboard',

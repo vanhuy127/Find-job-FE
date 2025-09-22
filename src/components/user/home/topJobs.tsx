@@ -100,7 +100,7 @@ const TopJobs = () => {
             variant="outline"
             size="lg"
             className="rounded-xl border-2 border-cyan-500 px-8 py-4 font-semibold text-cyan-600 hover:bg-cyan-500 hover:text-white dark:text-cyan-400"
-            onClick={() => navigate(ROUTE_PATH.USER.LIST_JOBS)}
+            onClick={() => navigate(ROUTE_PATH.USER.JOBS.LIST)}
           >
             Xem tất cả việc làm IT
           </Button>

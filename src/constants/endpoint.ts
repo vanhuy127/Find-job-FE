@@ -14,6 +14,8 @@ export const END_POINT = {
   USER: {
     COMPANIES: {
       LIST: '/companies',
+      DETAILS: (id: string) => `/company/${id}`,
+      CURRENT_JOBS: (id: string) => `/company/${id}/jobs`,
     },
     JOBS: {
       LIST: '/jobs',

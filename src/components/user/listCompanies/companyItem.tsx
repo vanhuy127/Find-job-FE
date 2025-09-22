@@ -1,9 +1,13 @@
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent } from '@/components/ui/card'
+import { ROUTE_PATH } from '@/constants'
 import { ICompany } from '@/interface'
+import { useNavigate } from 'react-router-dom'
 
 export const CompanyItem = ({ company }: { company: ICompany }) => {
+    const navigate = useNavigate();
+
     return (
         <Card
             key={company.id}
@@ -39,8 +43,8 @@ export const CompanyItem = ({ company }: { company: ICompany }) => {
                     </div>
                 </div>
 
-                <Button className="mt-8 w-full rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 py-3 font-semibold text-white transition-all duration-300 hover:from-cyan-600 hover:to-blue-600">
-                    Xem việc làm
+                <Button onClick={() => navigate(ROUTE_PATH.USER.COMPANIES.DETAILS.LINK(company.id))} className="mt-8 w-full rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 py-3 font-semibold text-white transition-all duration-300 hover:from-cyan-600 hover:to-blue-600">
+                    Xem thông tin
                 </Button>
             </CardContent>
         </Card>

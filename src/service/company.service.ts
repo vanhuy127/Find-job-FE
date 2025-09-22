@@ -2,7 +2,7 @@ import { toast } from 'sonner';
 
 import { axiosClient } from '@/config/axios';
 import { END_POINT } from '@/constants';
-import { ICompany, IListResponse, IParamsBase, IResponse } from '@/interface';
+import { ICompany, IJob, IListResponse, IParamsBase, IResponse } from '@/interface';
 
 export const useCompanyService = () => {
   const getCompanies = async (params?: IParamsBase & { status?: number; province?: string }) => {
@@ -13,6 +13,18 @@ export const useCompanyService = () => {
 
   const getCompaniesForUser = async (params?: IParamsBase & { status?: number; province?: string }) => {
     const res: IListResponse<ICompany> = await axiosClient.get(END_POINT.USER.COMPANIES.LIST, { params });
+
+    return res.data;
+  };
+
+  const getCompanyByIdForUser = async (id: string) => {
+    const res: IResponse<ICompany> = await axiosClient.get(END_POINT.USER.COMPANIES.DETAILS(id));
+
+    return res.data;
+  };
+
+  const getJobsForCompany = async (id: string) => {
+    const res: IListResponse<IJob> = await axiosClient.get(END_POINT.USER.COMPANIES.CURRENT_JOBS(id));
 
     return res.data;
   };
@@ -58,5 +70,7 @@ export const useCompanyService = () => {
     getCompaniesPending,
     changeCompanyStatus,
     getCompaniesForUser,
+    getCompanyByIdForUser,
+    getJobsForCompany,
   };
 };

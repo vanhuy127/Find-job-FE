@@ -78,7 +78,7 @@ const TopCompanies = () => {
             variant="outline"
             size="lg"
             className="rounded-xl border-2 border-cyan-500 px-8 py-4 font-semibold text-cyan-600 transition-all duration-300 hover:bg-cyan-500 hover:text-white dark:text-cyan-400"
-            onClick={() => navigate(ROUTE_PATH.USER.LIST_COMPANIES)}
+            onClick={() => navigate(ROUTE_PATH.USER.COMPANIES.LIST)}
           >
             Xem tất cả công ty tech
           </Button>

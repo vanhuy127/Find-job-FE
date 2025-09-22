@@ -28,8 +28,8 @@ const Header = () => {
 
   const navigationItems = [
     { name: 'Trang chủ', href: ROUTE_PATH.USER.HOME },
-    { name: 'Công ty', href: ROUTE_PATH.USER.LIST_COMPANIES },
-    { name: 'Công việc', href: ROUTE_PATH.USER.LIST_JOBS },
+    { name: 'Công ty', href: ROUTE_PATH.USER.COMPANIES.LIST },
+    { name: 'Công việc', href: ROUTE_PATH.USER.JOBS.LIST },
   ];
 
   return (
