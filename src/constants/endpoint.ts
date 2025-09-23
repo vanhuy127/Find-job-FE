@@ -19,6 +19,7 @@ export const END_POINT = {
     },
     JOBS: {
       LIST: '/jobs',
+      DETAILS: (id: string) => `/job/${id}`,
     },
   },
   ADMIN: {

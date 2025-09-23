@@ -1,11 +1,14 @@
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { JOB_LEVEL_SHOWS, JOB_TYPE_SHOWS } from "@/constants"
+import { JOB_LEVEL_SHOWS, JOB_TYPE_SHOWS, ROUTE_PATH } from "@/constants"
 import { IJob } from "@/interface"
 import { formatSalary, numDateSince } from "@/utils"
 import { Building, Clock, DollarSign, MapPin, Star } from "lucide-react"
+import { useNavigate } from "react-router-dom"
 const JobItem = ({ job }: { job: IJob }) => {
+    const navigate = useNavigate();
+
     return (
         <Card
             key={job.id}
@@ -77,7 +80,7 @@ const JobItem = ({ job }: { job: IJob }) => {
                     </div>
 
                     <div className="flex flex-col sm:flex-row md:flex-col gap-3 md:ml-8">
-                        <Button className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white px-6 md:px-8 py-2 md:py-3 rounded-xl shadow-lg hover:shadow-xl transition-all text-sm md:text-base">
+                        <Button onClick={() => navigate(ROUTE_PATH.USER.JOBS.DETAILS.LINK(job.id))} className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white px-6 md:px-8 py-2 md:py-3 rounded-xl shadow-lg hover:shadow-xl transition-all text-sm md:text-base">
                             Ứng tuyển ngay
                         </Button>
                         <Button

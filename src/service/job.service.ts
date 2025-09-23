@@ -27,6 +27,12 @@ export const useJobService = () => {
     return res.data;
   };
 
+  const getJobByIdForUser = async (id: string) => {
+    const res: IResponse<IJob> = await axiosClient.get(END_POINT.USER.JOBS.DETAILS(id));
+
+    return res.data;
+  };
+
   const getJobsCurrentCompany = async (
     params?: IParamsBase & { province?: string; jobType?: string; level?: string },
   ) => {
@@ -88,5 +94,6 @@ export const useJobService = () => {
     editJob,
     deleteJob,
     getJobsForUser,
+    getJobByIdForUser,
   };
 };
