@@ -32,6 +32,25 @@ const Header = () => {
     { name: 'Công việc', href: ROUTE_PATH.USER.JOBS.LIST },
   ];
 
+  const userMenuItems = [
+    {
+      role: ROLE.ADMIN,
+      items: [
+        { name: 'Trang quản trị', href: ROUTE_PATH.ADMIN.DASHBOARD },
+      ]
+    },
+    {
+      role: ROLE.COMPANY,
+      items: [
+        { name: 'Trang quản trị', href: ROUTE_PATH.COMPANY.DASHBOARD },
+      ]
+    },
+    {
+      role: ROLE.USER,
+      items: [{ name: 'Tài khoản', href: ROUTE_PATH.USER.ACCOUNT }]
+    },
+  ]
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/70 shadow-sm backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/70">
       <div className="container mx-auto px-4">
@@ -74,23 +93,13 @@ const Header = () => {
                     <DropdownMenuLabel className='text-center'>Xin chào, {user?.email.split('@')[0]}</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     {
-                      isRole(ROLE.ADMIN) && (
-                        <DropdownMenuItem className='cursor-pointer flex items-center justify-center'>
-                          <Link to={ROUTE_PATH.ADMIN.DASHBOARD}>Trang quản trị</Link>
-                        </DropdownMenuItem>
-                      )
-                    }
-                    {
-                      isRole(ROLE.COMPANY) && (
-                        <DropdownMenuItem className='cursor-pointer flex items-center justify-center'>
-                          <Link to={ROUTE_PATH.COMPANY.DASHBOARD}>Trang quản trị</Link>
-                        </DropdownMenuItem>
-                      )
-                    }
-                    {
-                      isRole(ROLE.USER) && (
-                        <DropdownMenuItem className='cursor-pointer flex items-center justify-center'>Tài khoản</DropdownMenuItem>
-                      )
+                      userMenuItems.map(menu => (
+                        isRole(menu.role) && menu.items.map(item => (
+                          <DropdownMenuItem key={item.name} className='cursor-pointer flex items-center justify-center'>
+                            <Link to={item.href}>{item.name}</Link>
+                          </DropdownMenuItem>
+                        ))
+                      ))
                     }
                     <DropdownMenuItem className='cursor-pointer flex items-center justify-center text-rose-600' onClick={() => logoutMutation.mutate()}>Đăng xuất</DropdownMenuItem>
                   </DropdownMenuContent>
@@ -149,6 +158,7 @@ const Header = () => {
                     {
                       user ? (
                         <Button
+                          onClick={() => logoutMutation.mutate()}
                           className="mx-5 mt-4 cursor-pointer rounded-xl bg-rose-600 font-semibold text-white shadow-lg hover:bg-rose-700 dark:bg-rose-500 dark:hover:bg-rose-600"
                         >
                           Đăng xuất
@@ -164,10 +174,6 @@ const Header = () => {
                         </Button>
                       )
                     }
-
-                    <div className="flex justify-center p-5">
-                      <ThemeControl />
-                    </div>
                   </div>
                 </div>
               </SheetContent>

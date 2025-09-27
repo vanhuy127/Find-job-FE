@@ -54,11 +54,19 @@ export const useAuthService = () => {
     }
   };
 
+  const changePassword = async (password: string, newPassword: string) => {
+    const res = await axiosClient.patch(END_POINT.AUTH.CHANGE_PASSWORD, { password, newPassword });
+    if (res.data) {
+      toast.success('Cập nhật mật khẩu thành công');
+    }
+  };
+
   return {
     login,
     getMe,
     logout,
     lockAccount,
     unlockAccount,
+    changePassword,
   };
 };
