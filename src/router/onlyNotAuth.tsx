@@ -9,6 +9,8 @@ import { useAuthStore } from '@/store';
 
 const Login = lazy(() => import('@/pages/auth/Login'));
 const Register = lazy(() => import('@/pages/auth/Register'));
+const ForgotPassword = lazy(() => import('@/pages/auth/ForgotPassword'));
+const ResetPassword = lazy(() => import('@/pages/auth/ResetPassword'));
 
 const OnLyNotAuthRoute = React.memo(({ children }: { children: React.ReactNode }) => {
   const { user } = useAuthStore();
@@ -31,6 +33,8 @@ const OnLyNotAuthRoutes: RouteObject[] = [
     children: [
       { path: ROUTE_PATH.AUTH.LOGIN, element: <Login /> },
       { path: ROUTE_PATH.AUTH.REGISTER, element: <Register /> },
+      { path: ROUTE_PATH.AUTH.FORGOT_PASSWORD, element: <ForgotPassword /> },
+      { path: ROUTE_PATH.AUTH.RESET_PASSWORD.PATH, element: <ResetPassword /> },
     ],
   },
 ];

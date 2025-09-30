@@ -14,6 +14,8 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
 import { useAuthService } from '@/service/auth.service';
+import { useNavigate } from 'react-router-dom';
+import { ROUTE_PATH } from '@/constants';
 
 const schema = z.object({
   email: z.string().email('Please enter a valid email address'),
@@ -25,6 +27,7 @@ type FormData = z.infer<typeof schema>;
 const Login = () => {
   const { login } = useAuthService();
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const {
     register,
@@ -93,6 +96,7 @@ const Login = () => {
                   type="button"
                   className="text-xs font-medium text-cyan-600 transition-colors hover:text-cyan-500"
                   tabIndex={-1}
+                  onClick={() => navigate(ROUTE_PATH.AUTH.FORGOT_PASSWORD)}
                 >
                   Forgot password?
                 </button>

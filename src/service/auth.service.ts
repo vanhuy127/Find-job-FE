@@ -61,6 +61,26 @@ export const useAuthService = () => {
     }
   };
 
+  const sendEmailForgotPassword = async (email: string) => {
+    const res = await axiosClient.patch(END_POINT.AUTH.FORGOT_PASSWORD, { email });
+    if (res.data) {
+      toast.success('Gửi email thành công');
+    }
+  };
+
+  const checkAvailableToken = async (token: string) => {
+    const res: IResponse<null> = await axiosClient.get(END_POINT.AUTH.CHECK_AVAILABLE_TOKEN(token));
+
+    return res.success;
+  };
+
+  const resetPassword = async (token: string, newPassword: string) => {
+    const res = await axiosClient.patch(END_POINT.AUTH.RESET_PASSWORD, { token, newPassword });
+    if (res.data) {
+      toast.success('Token hợp lệ');
+    }
+  };
+
   return {
     login,
     getMe,
@@ -68,5 +88,8 @@ export const useAuthService = () => {
     lockAccount,
     unlockAccount,
     changePassword,
+    sendEmailForgotPassword,
+    checkAvailableToken,
+    resetPassword,
   };
 };

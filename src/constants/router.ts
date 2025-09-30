@@ -3,6 +3,10 @@ export const ROUTE_PATH = {
   AUTH: {
     LOGIN: '/login',
     REGISTER: '/register',
+    FORGOT_PASSWORD: '/forgot-password',
+    RESET_PASSWORD: {
+      PATH: '/reset-password/:token',
+    },
   },
   USER: {
     ACCOUNT: '/account',
