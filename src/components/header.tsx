@@ -11,7 +11,6 @@ import { useAuthStore } from '@/store';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from './ui/dropdown-menu';
 import { useAuthService } from '@/service/auth.service';
 import { useMutation } from '@tanstack/react-query';
-import { isRole } from '@/utils';
 import { ROLE } from '@/constants';
 
 const ThemeControl = lazy(() => import('@/components/themeControl'));
@@ -32,24 +31,30 @@ const Header = () => {
     { name: 'Công việc', href: ROUTE_PATH.USER.JOBS.LIST },
   ];
 
-  const userMenuItems = [
-    {
-      role: ROLE.ADMIN,
-      items: [
-        { name: 'Trang quản trị', href: ROUTE_PATH.ADMIN.DASHBOARD },
-      ]
-    },
-    {
-      role: ROLE.COMPANY,
-      items: [
-        { name: 'Trang quản trị', href: ROUTE_PATH.COMPANY.DASHBOARD },
-      ]
-    },
-    {
-      role: ROLE.USER,
-      items: [{ name: 'Tài khoản', href: ROUTE_PATH.USER.ACCOUNT }]
-    },
-  ]
+  // const userMenuItems = [
+  //   {
+  //     role: ROLE.ADMIN,
+  //     items: [
+  //       { name: 'Trang quản trị', href: ROUTE_PATH.ADMIN.DASHBOARD },
+  //     ]
+  //   },
+  //   {
+  //     role: ROLE.COMPANY,
+  //     items: [
+  //       { name: 'Trang quản trị', href: ROUTE_PATH.COMPANY.DASHBOARD },
+  //     ]
+  //   },
+  //   {
+  //     role: ROLE.USER,
+  //     items: [{ name: 'Tài khoản', href: ROUTE_PATH.USER.ACCOUNT }]
+  //   },
+  // ]
+
+  const userMenuItems = {
+    [ROLE.ADMIN]: [{ name: 'Trang quản trị', href: ROUTE_PATH.ADMIN.DASHBOARD }],
+    [ROLE.COMPANY]: [{ name: 'Trang quản trị', href: ROUTE_PATH.COMPANY.DASHBOARD }],
+    [ROLE.USER]: [{ name: 'Tài khoản', href: ROUTE_PATH.USER.ACCOUNT }],
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/70 shadow-sm backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/70">
@@ -90,15 +95,13 @@ const Header = () => {
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="center" className="min-w-30">
-                    <DropdownMenuLabel className='text-center'>Xin chào, {user?.email.split('@')[0]}</DropdownMenuLabel>
+                    <DropdownMenuLabel className='text-center'>Xin chào, {user.email ? user?.email.split('@')[0] : 'user'}</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     {
-                      userMenuItems.map(menu => (
-                        isRole(menu.role) && menu.items.map(item => (
-                          <DropdownMenuItem key={item.name} className='cursor-pointer flex items-center justify-center'>
-                            <Link to={item.href}>{item.name}</Link>
-                          </DropdownMenuItem>
-                        ))
+                      userMenuItems[user.role].map(item => (
+                        <DropdownMenuItem key={item.name} className='cursor-pointer flex items-center justify-center'>
+                          <Link to={item.href}>{item.name}</Link>
+                        </DropdownMenuItem>
                       ))
                     }
                     <DropdownMenuItem className='cursor-pointer flex items-center justify-center text-rose-600' onClick={() => logoutMutation.mutate()}>Đăng xuất</DropdownMenuItem>

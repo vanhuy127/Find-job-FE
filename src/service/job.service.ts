@@ -2,7 +2,7 @@ import { toast } from 'sonner';
 
 import { axiosClient } from '@/config/axios';
 import { END_POINT } from '@/constants';
-import { IJob, IListResponse, IParamsBase, IResponse } from '@/interface';
+import { IJob, IListResponse, IParamsBase, IResponse, IResume } from '@/interface';
 import { JobFormValues } from '@/schema/job.schema';
 
 export const useJobService = () => {
@@ -37,6 +37,12 @@ export const useJobService = () => {
     params?: IParamsBase & { province?: string; jobType?: string; level?: string },
   ) => {
     const res: IListResponse<IJob> = await axiosClient.get(END_POINT.COMPANY.JOBS.LIST_CURRENT_COMPANY, { params });
+
+    return res.data;
+  };
+
+  const getCurrentResumesByJobId = async (id: string) => {
+    const res: IListResponse<IResume> = await axiosClient.get(END_POINT.USER.JOBS.LIST_RESUMES_APPLIED_CURRENT(id));
 
     return res.data;
   };
@@ -95,5 +101,6 @@ export const useJobService = () => {
     deleteJob,
     getJobsForUser,
     getJobByIdForUser,
+    getCurrentResumesByJobId,
   };
 };

@@ -24,6 +24,7 @@ export const END_POINT = {
     JOBS: {
       LIST: '/jobs',
       DETAILS: (id: string) => `/job/${id}`,
+      LIST_RESUMES_APPLIED_CURRENT: (id: string) => `/job/${id}/current-resumes`,
     },
   },
   ADMIN: {
@@ -61,6 +62,7 @@ export const END_POINT = {
       LIST: '/resumes',
       GET_BY_ID: (id: string) => `/resume/${id}`,
       CHANGE_STATUS: (id: string) => `/resume/${id}/change-status`,
+      UPLOAD_CV: 'upload-resume',
     },
   },
 };
