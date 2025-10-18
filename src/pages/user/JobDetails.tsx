@@ -137,8 +137,7 @@ const JobDetails = () => {
                                                     {appliedResumes.data.map((app) => (
                                                         <li key={app.id} className="flex items-center justify-between p-2 border border-gray-200 dark:border-gray-700 rounded">
                                                             <span className="text-sm text-gray-900 dark:text-white">{app.resumePath}</span>
-                                                            <Button variant="outline" size="icon" className="border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 bg-transparent">
-                                                                {/* TODO: Điều hướng đến trang chi tiết CV */}
+                                                            <Button onClick={() => navigate(ROUTE_PATH.USER.RESUMES.DETAILS.LINK(app.id))} variant="outline" size="icon" className="border-gray-200 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-700 bg-transparent">
                                                                 <Eye className="h-4 w-4" />
                                                             </Button>
                                                         </li>

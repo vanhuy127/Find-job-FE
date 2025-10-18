@@ -12,6 +12,20 @@ export const useResumeService = () => {
     return res.data;
   };
 
+  const getResumesForUser = async (params?: IParamsBase & { status?: string }) => {
+    const res: IListResponse<IResumeExtend> = await axiosClient.get(END_POINT.USER.RESUMES.LIST_USER_APPLIED, {
+      params,
+    });
+
+    return res.data;
+  };
+
+  const getResumesByIdForUser = async (id: string) => {
+    const res: IResponse<IResumeExtend> = await axiosClient.get(END_POINT.USER.RESUMES.GET_BY_ID(id));
+
+    return res.data;
+  };
+
   const getResumeById = async (id: string) => {
     const res: IResponse<IResumeExtend> = await axiosClient.get(END_POINT.COMPANY.RESUMES.GET_BY_ID(id));
 
@@ -56,5 +70,7 @@ export const useResumeService = () => {
     getResumeById,
     changeStatus,
     uploadCV,
+    getResumesForUser,
+    getResumesByIdForUser,
   };
 };

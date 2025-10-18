@@ -10,6 +10,13 @@ export const ROUTE_PATH = {
   },
   USER: {
     ACCOUNT: '/account',
+    RESUMES: {
+      LIST: '/resume',
+      DETAILS: {
+        PATH: '/resume/:id',
+        LINK: (id: string) => `/resume/${id}`,
+      },
+    },
     HOME: '/',
     COMPANIES: {
       LIST: '/company',

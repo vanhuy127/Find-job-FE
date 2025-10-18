@@ -10,6 +10,8 @@ import { useAuthStore } from '@/store';
 
 //user page
 const Account = lazy(() => import('@/pages/user/Account'));
+const Resumes = lazy(() => import('@/pages/user/resumes'));
+const ResumeDetails = lazy(() => import('@/pages/user/resumes/Details'));
 
 //admin page
 const Dashboard = lazy(() => import('@/pages/admin/Dashboard'));
@@ -52,7 +54,11 @@ const PrivateRoutes: RouteObject[] = [
         <DefaultLayout />
       </PrivateRoute>
     ),
-    children: [{ path: ROUTE_PATH.USER.ACCOUNT, element: <Account /> }],
+    children: [
+      { path: ROUTE_PATH.USER.ACCOUNT, element: <Account /> },
+      { path: ROUTE_PATH.USER.RESUMES.LIST, element: <Resumes /> },
+      { path: ROUTE_PATH.USER.RESUMES.DETAILS.PATH, element: <ResumeDetails /> },
+    ],
   },
   {
     element: (

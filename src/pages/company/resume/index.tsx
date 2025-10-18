@@ -3,7 +3,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { useQuery } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
 
 import SearchInput from '@/components/admin/searchInput';
 import StatusFilter from '@/components/admin/statusFilter';
@@ -17,7 +16,6 @@ import { useResumeService } from '@/service/resume.service';
 import { TableData } from './components/Table';
 
 const index = () => {
-  const navigate = useNavigate();
   const { query, setQuery } = useQueryParams();
   const { getResumes } = useResumeService();
   const { page = 1, search = '', status = '', size = MAX_PAGE_SHOW } = query;

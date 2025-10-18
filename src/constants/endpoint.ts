@@ -26,6 +26,10 @@ export const END_POINT = {
       DETAILS: (id: string) => `/job/${id}`,
       LIST_RESUMES_APPLIED_CURRENT: (id: string) => `/job/${id}/current-resumes`,
     },
+    RESUMES: {
+      LIST_USER_APPLIED: '/resumes/current-user',
+      GET_BY_ID: (id: string) => `/resume/${id}/current-user`,
+    },
   },
   ADMIN: {
     USER: {

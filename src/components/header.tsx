@@ -31,29 +31,10 @@ const Header = () => {
     { name: 'Công việc', href: ROUTE_PATH.USER.JOBS.LIST },
   ];
 
-  // const userMenuItems = [
-  //   {
-  //     role: ROLE.ADMIN,
-  //     items: [
-  //       { name: 'Trang quản trị', href: ROUTE_PATH.ADMIN.DASHBOARD },
-  //     ]
-  //   },
-  //   {
-  //     role: ROLE.COMPANY,
-  //     items: [
-  //       { name: 'Trang quản trị', href: ROUTE_PATH.COMPANY.DASHBOARD },
-  //     ]
-  //   },
-  //   {
-  //     role: ROLE.USER,
-  //     items: [{ name: 'Tài khoản', href: ROUTE_PATH.USER.ACCOUNT }]
-  //   },
-  // ]
-
   const userMenuItems = {
     [ROLE.ADMIN]: [{ name: 'Trang quản trị', href: ROUTE_PATH.ADMIN.DASHBOARD }],
     [ROLE.COMPANY]: [{ name: 'Trang quản trị', href: ROUTE_PATH.COMPANY.DASHBOARD }],
-    [ROLE.USER]: [{ name: 'Tài khoản', href: ROUTE_PATH.USER.ACCOUNT }],
+    [ROLE.USER]: [{ name: 'Đơn ứng tuyển', href: ROUTE_PATH.USER.RESUMES.LIST }, { name: 'Tài khoản', href: ROUTE_PATH.USER.ACCOUNT }],
   }
 
   return (
