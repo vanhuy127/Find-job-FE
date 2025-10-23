@@ -146,7 +146,10 @@ const Login = () => {
             <div className="text-center">
               <p className="text-sm text-gray-600">
                 {"Don't have an account? "}
-                <button type="button" className="font-medium text-cyan-600 transition-colors hover:text-cyan-500">
+                <button onClick={(e) => {
+                  e.preventDefault();
+                  navigate(ROUTE_PATH.AUTH.REGISTER);
+                }} type="button" className="font-medium text-cyan-600 transition-colors hover:text-cyan-500">
                   Sign up
                 </button>
               </p>

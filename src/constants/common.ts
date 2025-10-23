@@ -37,6 +37,14 @@ export const GENDER = {
   OTHER: 'OTHER',
 };
 
+export const GENDER_ARRAY = Object.values(GENDER);
+
+export const GENDER_SHOWS = {
+  [GENDER.MALE]: 'Nam',
+  [GENDER.FEMALE]: 'Nữ',
+  [GENDER.OTHER]: 'Khác',
+};
+
 export const RESUME_STATUS = {
   PENDING: 'PENDING',
   APPROVED: 'APPROVED',

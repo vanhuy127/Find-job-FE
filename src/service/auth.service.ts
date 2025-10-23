@@ -3,11 +3,21 @@ import { toast } from 'sonner';
 import { axiosClient } from '@/config/axios';
 import { END_POINT, LOCAL_STORAGE_KEY } from '@/constants';
 import { IResponse, IUserAccount } from '@/interface';
+import { RegisterFormValues } from '@/schema/auth.schema';
 import { useAuthStore } from '@/store';
 import { removeLocalStorage, setLocalStorage } from '@/utils';
 
 export const useAuthService = () => {
   const { setUser } = useAuthStore();
+
+  const register = async (data: RegisterFormValues) => {
+    const res: IResponse<null> = await axiosClient.post(END_POINT.AUTH.REGISTER, {
+      ...data,
+    });
+    if (res.success) {
+      toast.success('Đăng ký tài khoản thành công');
+    }
+  };
 
   const login = async (email: string, password: string) => {
     const res = await axiosClient.post(END_POINT.AUTH.LOGIN, { email, password });
@@ -82,6 +92,7 @@ export const useAuthService = () => {
   };
 
   return {
+    register,
     login,
     getMe,
     logout,

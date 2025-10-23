@@ -57,17 +57,17 @@ const Footer = () => {
             <ul className="space-y-2 text-gray-400">
               <li>
                 <Link to="#" className="transition-colors hover:text-cyan-400">
+                  Tạo tài khoản nhà tuyển dụng
+                </Link>
+              </li>
+              <li>
+                <Link to="#" className="transition-colors hover:text-cyan-400">
                   Đăng tin tuyển dụng
                 </Link>
               </li>
               <li>
                 <Link to="#" className="transition-colors hover:text-cyan-400">
                   Tìm IT talent
-                </Link>
-              </li>
-              <li>
-                <Link to="#" className="transition-colors hover:text-cyan-400">
-                  Tech hiring solutions
                 </Link>
               </li>
               <li>

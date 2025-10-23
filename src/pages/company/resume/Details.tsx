@@ -120,7 +120,6 @@ const Details = () => {
                     <User className="h-4 w-4 text-gray-500 dark:text-gray-400" />
                     <div>
                       <p className="font-medium text-gray-900 dark:text-gray-100">{resume?.user.fullName}</p>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">@{resume?.user.username}</p>
                     </div>
                   </div>
 

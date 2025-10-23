@@ -35,7 +35,6 @@ export const TableData = ({ data, isLoading = false }: TableDataProps) => {
             <TableRow key={user.id} className="hover:bg-cyan-50/50 dark:hover:bg-gray-700">
               <TableCell>#{index + 1}</TableCell>
               <TableCell>{user.fullName}</TableCell>
-              <TableCell>{user.username}</TableCell>
               <TableCell>{user.email}</TableCell>
               <TableCell>{getUserStatusBadge(user.account.isLocked)}</TableCell>
               <TableCell>{formatDate(user.createdAt, DATE_PATTERN.DATE_TIME)}</TableCell>

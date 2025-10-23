@@ -9,7 +9,6 @@ export interface IUserAccount {
 export interface IUser {
   id: string;
   email: string;
-  username: string;
   fullName: string;
   phone: string;
   dob: Date;
