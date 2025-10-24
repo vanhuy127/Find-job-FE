@@ -2,8 +2,10 @@ import { Code } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 import { Badge } from './ui/badge';
+import { ROUTE_PATH } from '@/constants';
 
 const Footer = () => {
+
   return (
     <footer className="border-t border-gray-800 bg-gray-900 py-12 text-white transition-colors duration-300 dark:border-gray-900 dark:bg-gray-950">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -56,7 +58,7 @@ const Footer = () => {
             <h3 className="mb-4 text-lg font-semibold text-cyan-400">Dành cho Công ty</h3>
             <ul className="space-y-2 text-gray-400">
               <li>
-                <Link to="#" className="transition-colors hover:text-cyan-400">
+                <Link to={ROUTE_PATH.AUTH.REGISTER_COMPANY} className="transition-colors hover:text-cyan-400">
                   Tạo tài khoản nhà tuyển dụng
                 </Link>
               </li>

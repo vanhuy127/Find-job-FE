@@ -31,3 +31,38 @@ export const registerSchema = z.object({
 });
 
 export type RegisterFormValues = z.infer<typeof registerSchema>;
+
+export const registerCompanySchema = z.object({
+  email: z.string().email({ message: 'Email không hợp lệ.' }),
+  password: z
+    .string()
+    .min(8, { message: 'Mật khẩu phải có ít nhất 8 ký tự.' })
+    .max(25, { message: 'Mật khẩu không được vượt quá 25 ký tự.' })
+    .regex(PASSWORD_REGEX, {
+      message: 'Mật khẩu phải có ít nhất 1 chữ hoa, 1 chữ thường, 1 chữ số và 1 ký tự đặc biệt.',
+    }),
+  name: z
+    .string()
+    .min(3, { message: 'Tên công ty phải có ít nhất 3 ký tự.' })
+    .max(100, { message: 'Tên công ty không được vượt quá 100 ký tự.' }),
+  description: z.string().optional(),
+  address: z.string().min(3, { message: 'Địa chỉ phải có ít nhất 3 ký tự.' }),
+  provinceId: z
+    .string({ required_error: 'Vui lòng chọn tỉnh/thành phố.' })
+    .min(1, { message: 'Vui lòng chọn tỉnh/thành phố.' }),
+  website: z.string().url({ message: 'Vui lòng nhập đúng định dạng URL trang web.' }).optional(),
+  taxCode: z.string().min(5, { message: 'Mã số thuế phải có ít nhất 5 ký tự.' }),
+  businessLicensePath: z
+    .instanceof(File, { message: 'Vui lòng tải lên file giấy phép kinh doanh.' })
+    .refine((file) => file.type === 'application/pdf', 'Chỉ cho phép tải lên file PDF.')
+    .refine((file) => file.size <= 5 * 1024 * 1024, 'Kích thước file phải nhỏ hơn 5MB.'),
+  logo: z
+    .instanceof(File, { message: 'Vui lòng tải lên logo công ty.' })
+    .refine(
+      (file) => ['image/jpeg', 'image/jpg', 'image/png'].includes(file.type),
+      'Chỉ cho phép tải lên file ảnh (JPG, JPEG, PNG).',
+    )
+    .refine((file) => file.size <= 5 * 1024 * 1024, 'Kích thước ảnh phải nhỏ hơn 5MB.'),
+});
+
+export type RegisterCompanyFormValues = z.infer<typeof registerCompanySchema>;

@@ -54,7 +54,6 @@ export const useResumeService = () => {
     const res: IResponse<IResume> = await axiosClient.post(END_POINT.COMPANY.RESUMES.UPLOAD_CV, formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
-    toast.success(res.message_code);
 
     if (!res.success) {
       toast.error(res.error_code);

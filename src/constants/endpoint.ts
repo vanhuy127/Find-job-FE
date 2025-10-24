@@ -5,6 +5,7 @@ export const END_POINT = {
     REFRESH_TOKEN: '/auth/refresh-token',
     LOGIN: '/auth/login',
     REGISTER: '/auth/register',
+    REGISTER_COMPANY: '/auth/register-company',
     CHANGE_PASSWORD: '/auth/change-password',
     FORGOT_PASSWORD: '/auth/forgot-password',
     CHECK_AVAILABLE_TOKEN: (token: string) => `/auth/forgot-password/${token}`,

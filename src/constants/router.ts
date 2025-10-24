@@ -3,6 +3,7 @@ export const ROUTE_PATH = {
   AUTH: {
     LOGIN: '/login',
     REGISTER: '/register',
+    REGISTER_COMPANY: '/register-company',
     FORGOT_PASSWORD: '/forgot-password',
     RESET_PASSWORD: {
       PATH: '/reset-password/:token',

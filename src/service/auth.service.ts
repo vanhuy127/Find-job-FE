@@ -3,7 +3,7 @@ import { toast } from 'sonner';
 import { axiosClient } from '@/config/axios';
 import { END_POINT, LOCAL_STORAGE_KEY } from '@/constants';
 import { IResponse, IUserAccount } from '@/interface';
-import { RegisterFormValues } from '@/schema/auth.schema';
+import { RegisterCompanyFormValues, RegisterFormValues } from '@/schema/auth.schema';
 import { useAuthStore } from '@/store';
 import { removeLocalStorage, setLocalStorage } from '@/utils';
 
@@ -16,6 +16,29 @@ export const useAuthService = () => {
     });
     if (res.success) {
       toast.success('Đăng ký tài khoản thành công');
+    }
+  };
+
+  const registerCompany = async (data: RegisterCompanyFormValues) => {
+    const formData = new FormData();
+    if (data.logo) formData.append('logo', data.logo);
+    if (data.businessLicensePath) formData.append('businessLicensePath', data.businessLicensePath);
+    formData.append('email', data.email);
+    formData.append('password', data.password);
+    formData.append('name', data.name);
+    formData.append('description', data.description || '');
+    formData.append('address', data.address);
+    formData.append('provinceId', data.provinceId);
+    formData.append('website', data.website || '');
+    formData.append('taxCode', data.taxCode);
+
+    const res: IResponse<null> = await axiosClient.post(END_POINT.AUTH.REGISTER_COMPANY, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+    if (!res.success) {
+      toast.error(res.error_code);
+    } else {
+      toast.success(res.message_code);
     }
   };
 
@@ -93,6 +116,7 @@ export const useAuthService = () => {
 
   return {
     register,
+    registerCompany,
     login,
     getMe,
     logout,
