@@ -63,6 +63,16 @@ export const useCompanyService = () => {
     }
   };
 
+  const getCompanyStatus = async (email: string) => {
+    const res: IResponse<ICompany> = await axiosClient.get(END_POINT.COMPANY.COMPANY_STATUS, {
+      params: {
+        email,
+      },
+    });
+
+    return res.data;
+  };
+
   return {
     getCompanies,
     getCompanyById,
@@ -72,5 +82,6 @@ export const useCompanyService = () => {
     getCompaniesForUser,
     getCompanyByIdForUser,
     getJobsForCompany,
+    getCompanyStatus,
   };
 };

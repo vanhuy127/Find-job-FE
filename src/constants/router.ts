@@ -77,6 +77,7 @@ export const ROUTE_PATH = {
   COMPANY: {
     DASHBOARD: '/company/dashboard',
     INFO: '/company/info',
+    COMPANY_STATUS: '/company-verification-status',
     JOBS: {
       LIST: '/company/job',
       DETAILS: {

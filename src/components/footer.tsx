@@ -63,6 +63,11 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
+                <Link to={ROUTE_PATH.COMPANY.COMPANY_STATUS} className="transition-colors hover:text-cyan-400">
+                  Tra cứu trạng thái duyệt công ty
+                </Link>
+              </li>
+              <li>
                 <Link to="#" className="transition-colors hover:text-cyan-400">
                   Đăng tin tuyển dụng
                 </Link>
