@@ -15,7 +15,7 @@ import { ROUTE_PATH } from '@/constants';
 import { useCompanyService } from '@/service/company.service';
 import { useState } from 'react';
 import { ICompany } from '@/interface';
-import CompanyApprovalStatus from '@/components/company/CompanyApprovalStatus';
+import CompanyApprovalStatus from '@/components/company/companyApprovalStatus';
 
 const schema = z.object({
     email: z.string().email('Please enter a valid email address'),
