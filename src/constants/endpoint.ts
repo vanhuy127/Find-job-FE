@@ -72,4 +72,15 @@ export const END_POINT = {
       UPLOAD_CV: 'upload-resume',
     },
   },
+  STATISTICS: {
+    OVERVIEW: '/admin/statistics/overview',
+    COMPANIES: '/admin/statistics/companies',
+    JOBS: '/admin/statistics/jobs',
+    APPLICATIONS: '/admin/statistics/applications',
+    TOP_PROVINCES: '/admin/statistics/top-provinces',
+    OVERVIEW_COMPANY: '/company/statistics/overview',
+    JOBS_COMPANY: '/company/statistics/by-jobs',
+    APPLICATIONS_COMPANY: '/company/statistics/applications',
+    COMPANY_TRENDS: '/company/statistics/applications-by-year',
+  },
 };

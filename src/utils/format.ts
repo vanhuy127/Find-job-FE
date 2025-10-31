@@ -20,7 +20,7 @@ export function parseDateFromString(dateStr: string): Date | undefined {
   return new Date(year, month - 1, day);
 }
 
-export const formatSalary = (min: number, max: number) => {
+export const formatSalary = (a: number, b?: number) => {
   const formatNumber = (num: number) => {
     if (num >= 1000000) {
       return `${(num / 1000000).toFixed(1)}M`;
@@ -28,8 +28,9 @@ export const formatSalary = (min: number, max: number) => {
 
     return `${(num / 1000).toFixed(0)}K`;
   };
+  if (!b) return `${formatNumber(a)} VND`;
 
-  return `${formatNumber(min)} - ${formatNumber(max)} VND`;
+  return `${formatNumber(a)} - ${formatNumber(b)} VND`;
 };
 
 export const isDateExpired = (endDate: string) => {
