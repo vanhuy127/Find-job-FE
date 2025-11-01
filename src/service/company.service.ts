@@ -3,12 +3,38 @@ import { toast } from 'sonner';
 import { axiosClient } from '@/config/axios';
 import { END_POINT } from '@/constants';
 import { ICompany, IJob, IListResponse, IParamsBase, IResponse } from '@/interface';
+import { CompanyFormValues } from '@/schema/company.schema';
 
 export const useCompanyService = () => {
   const getCompanies = async (params?: IParamsBase & { status?: number; province?: string }) => {
     const res: IListResponse<ICompany> = await axiosClient.get(END_POINT.ADMIN.COMPANIES.LIST, { params });
 
     return res.data;
+  };
+
+  const getCompanyCurrent = async () => {
+    const res: IResponse<ICompany> = await axiosClient.get(END_POINT.COMPANY.GET_CURRENT);
+
+    return res.data;
+  };
+
+  const updateCompanyInfoCurrent = async (data: CompanyFormValues) => {
+    const formData = new FormData();
+    if (data.logo) formData.append('logo', data.logo);
+
+    formData.append('description', data.description || '');
+    formData.append('address', data.address);
+    formData.append('provinceId', data.provinceId);
+    formData.append('website', data.website || '');
+
+    const res: IResponse<null> = await axiosClient.patch(END_POINT.COMPANY.UPDATE_INFO, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+    if (!res.success) {
+      toast.error(res.error_code);
+    } else {
+      toast.success(res.message_code);
+    }
   };
 
   const getCompaniesForUser = async (params?: IParamsBase & { status?: number; province?: string }) => {
@@ -83,5 +109,7 @@ export const useCompanyService = () => {
     getCompanyByIdForUser,
     getJobsForCompany,
     getCompanyStatus,
+    updateCompanyInfoCurrent,
+    getCompanyCurrent,
   };
 };

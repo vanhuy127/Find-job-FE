@@ -57,6 +57,8 @@ export const END_POINT = {
     },
   },
   COMPANY: {
+    UPDATE_INFO: '/company/update-info',
+    GET_CURRENT: '/company/current',
     COMPANY_STATUS: '/company/verification-status',
     JOBS: {
       LIST_CURRENT_COMPANY: '/company/jobs/current-company',
