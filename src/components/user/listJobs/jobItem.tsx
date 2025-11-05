@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { JOB_LEVEL_SHOWS, JOB_TYPE_SHOWS, ROUTE_PATH } from "@/constants"
 import { IJob } from "@/interface"
 import { formatSalary, numDateSince } from "@/utils"
-import { Building, Clock, DollarSign, MapPin, Star } from "lucide-react"
+import { Building, Clock, DollarSign, MapPin } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 const JobItem = ({ job }: { job: IJob }) => {
     const navigate = useNavigate();
@@ -34,8 +34,6 @@ const JobItem = ({ job }: { job: IJob }) => {
                                     <p className="text-base md:text-lg font-semibold text-gray-700 dark:text-gray-300">
                                         {job.company.name}
                                     </p>
-                                    <Star className="h-4 w-4 text-yellow-400 fill-current" />
-                                    <span className="text-sm text-gray-500 dark:text-gray-400">4.8</span>
                                 </div>
                             </div>
                             <Badge className="bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-300 self-start">
@@ -82,13 +80,6 @@ const JobItem = ({ job }: { job: IJob }) => {
                     <div className="flex flex-col sm:flex-row md:flex-col gap-3 md:ml-8">
                         <Button onClick={() => navigate(ROUTE_PATH.USER.JOBS.DETAILS.LINK(job.id))} className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white px-6 md:px-8 py-2 md:py-3 rounded-xl shadow-lg hover:shadow-xl transition-all text-sm md:text-base">
                             Ứng tuyển ngay
-                        </Button>
-                        <Button
-                            variant="outline"
-                            size="sm"
-                            className="rounded-xl border-2 border-cyan-200 text-cyan-600 hover:border-cyan-500 hover:bg-cyan-50 transition-all bg-transparent dark:border-cyan-800 dark:text-cyan-400 dark:hover:bg-cyan-900/20"
-                        >
-                            Lưu việc
                         </Button>
                     </div>
                 </div>

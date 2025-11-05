@@ -5,13 +5,15 @@ import type { RouteObject } from 'react-router-dom';
 import { ROUTE_PATH } from '@/constants/router';
 import { BlankLayout } from '@/layout/blank';
 import { DefaultLayout } from '@/layout/default';
-import Unauthorized from '@/pages/Unauthorized';
 
 const Home = lazy(() => import('@/pages/user/Home'));
 const ListJobs = lazy(() => import('@/pages/user/Jobs'));
 const ListCompanies = lazy(() => import('@/pages/user/Companies'));
 const CompanyDetails = lazy(() => import('@/pages/user/CompanyDetails'));
 const JobDetails = lazy(() => import('@/pages/user/JobDetails'));
+
+const Unauthorized = lazy(() => import('@/pages/Unauthorized'));
+const NotFound = lazy(() => import('@/pages/NotFound'));
 
 const GlobalRoutes: RouteObject[] = [
   {
@@ -25,7 +27,8 @@ const GlobalRoutes: RouteObject[] = [
   },
   {
     element: <BlankLayout />,
-    children: [{ path: ROUTE_PATH.UNAUTHORIZE, element: <Unauthorized /> }],
+    children: [{ path: ROUTE_PATH.UNAUTHORIZE, element: <Unauthorized /> },
+    { path: ROUTE_PATH.NOT_FOUND, element: <NotFound /> }],
   },
 ];
 
