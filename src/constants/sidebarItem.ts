@@ -29,6 +29,11 @@ export const adminNavigationItems = [
     icon: Lightbulb,
   },
   {
+    title: 'Gói VIP',
+    url: ROUTE_PATH.ADMIN.VIP_PACKAGES.LIST,
+    icon: FileUser,
+  },
+  {
     title: 'Duyệt công ty',
     url: ROUTE_PATH.ADMIN.COMPANIES.LIST_PENDING,
     icon: Building2,

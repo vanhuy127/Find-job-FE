@@ -96,3 +96,29 @@ export const JOB_LEVEL_SHOWS = {
   [JOB_LEVEL.SENIOR]: 'Senior',
   [JOB_LEVEL.LEAD]: 'Lead',
 };
+
+export const VIP_PACKAGE_LEVEL: Record<string, string> = {
+  BASIC: 'BASIC',
+  SILVER: 'SILVER',
+  GOLD: 'GOLD',
+  PLATINUM: 'PLATINUM',
+  DIAMOND: 'DIAMOND',
+};
+
+export const VIP_PACKAGE_LEVEL_NUMERIC: Record<number, string> = {
+  0: 'BASIC',
+  1: 'SILVER',
+  2: 'GOLD',
+  3: 'PLATINUM',
+  4: 'DIAMOND',
+};
+
+export const VIP_PACKAGE_LEVEL_SHOWS = {
+  [VIP_PACKAGE_LEVEL.BASIC]: 'Basic',
+  [VIP_PACKAGE_LEVEL.SILVER]: 'Silver',
+  [VIP_PACKAGE_LEVEL.GOLD]: 'Gold',
+  [VIP_PACKAGE_LEVEL.PLATINUM]: 'Platinum',
+  [VIP_PACKAGE_LEVEL.DIAMOND]: 'Diamond',
+};
+
+export const VIP_PACKAGE_LEVEL_ARRAY = Object.values(VIP_PACKAGE_LEVEL);

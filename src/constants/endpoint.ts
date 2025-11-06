@@ -55,6 +55,13 @@ export const END_POINT = {
       EDIT: (id: string) => `/admin/skill/${id}`,
       DELETE: (id: string) => `/admin/skill/${id}`,
     },
+    VIP_PACKAGE: {
+      GET_ALL: '/admin/vip-packages',
+      CREATE: '/admin/vip-package',
+      GET_BY_ID: (id: string) => `/admin/vip-package/${id}`,
+      EDIT: (id: string) => `/admin/vip-package/${id}`,
+      DELETE: (id: string) => `/admin/vip-package/${id}`,
+    },
   },
   COMPANY: {
     UPDATE_INFO: '/company/update-info',

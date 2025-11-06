@@ -6,3 +6,4 @@ export * from './province';
 export * from './job';
 export * from './skill';
 export * from './resume';
+export * from './vipPackage';

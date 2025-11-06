@@ -66,11 +66,12 @@ export const ROUTE_PATH = {
         LINK: (id: string) => `/admin/skill/${id}/edit`,
       },
     },
-    CONTENT: {
-      LIST: '/admin/content',
-      DETAILS: {
-        PATH: '/admin/content/:id',
-        LINK: (id: string) => `/admin/content/${id}`,
+    VIP_PACKAGES: {
+      LIST: '/admin/vip-package',
+      CREATE: '/admin/vip-package/create',
+      EDIT: {
+        PATH: '/admin/vip-package/:id/edit',
+        LINK: (id: string) => `/admin/vip-package/${id}/edit`,
       },
     },
   },
