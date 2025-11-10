@@ -39,6 +39,8 @@ const CompanyCreateJob = lazy(() => import('@/pages/company/job/Create'));
 const CompanyEditJob = lazy(() => import('@/pages/company/job/Edit'));
 const CompanyResume = lazy(() => import('@/pages/company/resume'));
 const CompanyResumeDetails = lazy(() => import('@/pages/company/resume/Details'));
+const CompanyListVipPackages = lazy(() => import('@/pages/company/vipPackage'));
+const CompanyVipPackagesCheckout = lazy(() => import('@/pages/company/vipPackage/checkout'));
 
 const PrivateRoute = React.memo(({ children, roles }: { children: React.ReactNode; roles?: string[] }) => {
   const { user } = useAuthStore();
@@ -103,6 +105,8 @@ const PrivateRoutes: RouteObject[] = [
       { path: ROUTE_PATH.COMPANY.JOBS.EDIT.PATH, element: <CompanyEditJob /> },
       { path: ROUTE_PATH.COMPANY.RESUMES.LIST, element: <CompanyResume /> },
       { path: ROUTE_PATH.COMPANY.RESUMES.DETAILS.PATH, element: <CompanyResumeDetails /> },
+      { path: ROUTE_PATH.COMPANY.VIP_PACKAGE.LIST, element: <CompanyListVipPackages /> },
+      { path: ROUTE_PATH.COMPANY.ORDER.CHECKOUT.PATH, element: <CompanyVipPackagesCheckout /> },
     ],
   },
 ];

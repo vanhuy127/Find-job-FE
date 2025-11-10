@@ -98,6 +98,15 @@ export const ROUTE_PATH = {
         LINK: (id: string) => `/company/resume/${id}`,
       },
     },
+    VIP_PACKAGE: {
+      LIST: '/company/vip-package',
+    },
+    ORDER: {
+      CHECKOUT: {
+        PATH: '/company/order/:id/checkout',
+        LINK: (id: string) => `/company/order/${id}/checkout`,
+      },
+    },
   },
   NOT_FOUND: '*',
   UNAUTHORIZE: '/unauthorized',

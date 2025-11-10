@@ -3,6 +3,7 @@ export const LOCAL_STORAGE_KEY = {
   ACCESS_TOKEN: 'accessToken',
   REFRESH_TOKEN: 'refreshToken',
   THEME: 'theme',
+  PAYMENT_EXPIRE_TIME: 'paymentExpireTime',
 };
 
 export const SYSTEM_ERROR = {
@@ -122,3 +123,9 @@ export const VIP_PACKAGE_LEVEL_SHOWS = {
 };
 
 export const VIP_PACKAGE_LEVEL_ARRAY = Object.values(VIP_PACKAGE_LEVEL);
+
+export const STATUS_ORDER = {
+  PENDING: 'PENDING',
+  SUCCESS: 'SUCCESS',
+  FAILED: 'FAILED',
+};

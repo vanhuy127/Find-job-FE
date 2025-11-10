@@ -61,4 +61,9 @@ export const companyNavigationItems = [
     url: ROUTE_PATH.COMPANY.RESUMES.LIST,
     icon: FileUser,
   },
+  {
+    title: 'Gói VIP',
+    url: ROUTE_PATH.COMPANY.VIP_PACKAGE.LIST,
+    icon: FileUser,
+  },
 ];

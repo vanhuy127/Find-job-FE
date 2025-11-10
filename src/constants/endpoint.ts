@@ -80,6 +80,14 @@ export const END_POINT = {
       CHANGE_STATUS: (id: string) => `/resume/${id}/change-status`,
       UPLOAD_CV: 'upload-resume',
     },
+    VIP_PACKAGE: {
+      GET_ALL: '/company/vip-packages',
+    },
+    ORDER: {
+      CREATE: '/company/order',
+      GET_BY_ID: (id: string) => `/company/order/${id}`,
+      CHANGE_STATUS_FAILED: (id: string) => `/company/order/${id}/failed`,
+    },
   },
   STATISTICS: {
     OVERVIEW: '/admin/statistics/overview',

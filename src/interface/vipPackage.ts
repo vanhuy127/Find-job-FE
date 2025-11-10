@@ -1,3 +1,7 @@
+import { OrderStatus } from '@/types';
+
+import { ICompany } from './company';
+
 export interface IVipPackage {
   id: string;
   name: string;
@@ -12,9 +16,10 @@ export interface IVipPackage {
 
 export interface ICompanyVipPackage {
   id: string;
-  companyId: string;
-  vipPackageId: string;
   endDate: Date;
+  status: OrderStatus;
   remainingPosts: number;
   createdAt: Date;
+  vipPackage: IVipPackage;
+  company: ICompany;
 }
