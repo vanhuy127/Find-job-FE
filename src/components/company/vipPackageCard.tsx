@@ -11,7 +11,8 @@ interface VipPackageCardProps {
     gradientColor: string
     badgeColor: string
 }
-
+//TODO: bổ sung kiểm tra nếu có gói VIP đang dùng thì hiển thị thông báo "Bạn đang sử dụng gói VIP ABC bạn có chắc chắn
+// muốn mua gói này không?" trước khi tạo đơn hàng mới"
 export default function VipPackageCard({ package: pkg, gradientColor, badgeColor }: VipPackageCardProps) {
     const navigate = useNavigate();
     const { createOrder } = useOrderService();

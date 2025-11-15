@@ -82,6 +82,7 @@ export const END_POINT = {
     },
     VIP_PACKAGE: {
       GET_ALL: '/company/vip-packages',
+      BOUGHT: '/company/vip-package-bought',
     },
     ORDER: {
       CREATE: '/company/order',

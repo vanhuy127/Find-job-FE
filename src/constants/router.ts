@@ -100,6 +100,7 @@ export const ROUTE_PATH = {
     },
     VIP_PACKAGE: {
       LIST: '/company/vip-package',
+      BOUGHT: '/company/vip-package-bought',
     },
     ORDER: {
       CHECKOUT: {

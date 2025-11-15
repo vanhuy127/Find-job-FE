@@ -25,6 +25,12 @@ export const jobSchema = z
       .min(1000, 'Lương tối đa phải lớn hơn hoặc bằng 1.000 đ'),
     endDate: z.string().regex(DOB_REGEX, 'Hạn ứng tuyển phải có định dạng dd-MM-yyyy'),
     skills: z.array(z.string()).nonempty('Vui lòng chọn ít nhất 1 kỹ năng'),
+    vipPackage: z
+      .string()
+      .refine((val) => val === 'none' || val === 'default' || /^[0-9a-fA-F-]{36}$/.test(val), {
+        message: 'Vui lòng chọn loại gói VIP',
+      })
+      .optional(),
   })
   .refine((data) => data.salaryMax >= data.salaryMin, {
     message: 'Lương tối đa phải lớn hơn hoặc bằng lương tối thiểu',

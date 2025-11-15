@@ -29,12 +29,16 @@ import { useProvinceService } from '@/service/province.service';
 import { formatDate, parseDateFromString } from '@/utils';
 import { useSkillService } from '@/service/skill.service';
 import MultiSelect from '@/components/admin/multiSelect';
+import { useVipPackageService } from '@/service/vip.service';
+import { useCompanyService } from '@/service/company.service';
 
 const CreateJob = () => {
   const navigate = useNavigate();
   const { createJob } = useJobService();
+  const { getCompanyCurrent } = useCompanyService();
   const { getSkills } = useSkillService();
   const { getProvinces } = useProvinceService();
+  const { getVipPackageBought } = useVipPackageService();
 
   const form = useForm<JobFormValues>({
     resolver: zodResolver(jobSchema),
@@ -50,6 +54,7 @@ const CreateJob = () => {
       salaryMax: 0,
       endDate: formatDate(new Date(), DATE_PATTERN.DATE),
       skills: [],
+      vipPackage: 'none',
     },
   });
 
@@ -63,6 +68,16 @@ const CreateJob = () => {
     queryFn: () => getSkills(),
   });
 
+  const { data: vpb } = useQuery({
+    queryKey: ["company-vip-bought"],
+    queryFn: getVipPackageBought,
+  });
+
+  const { data: company } = useQuery({
+    queryKey: ['company-current'],
+    queryFn: () => getCompanyCurrent(),
+  });
+
   const provinceOptions = useMemo(() => {
     const filteredProvinces = [
       ...(provinces?.data?.map((province) => ({
@@ -73,6 +88,28 @@ const CreateJob = () => {
 
     return filteredProvinces;
   }, [provinces]);
+
+  const vpSelect: { label: string; value: string }[] = useMemo(() => {
+    const list = [
+      { label: "Không sử dụng", value: "none" },
+    ];
+
+    if (company && company.postLimit > 0) {
+      list.push({
+        label: `Sử dụng bài viết mặc định của công ty (còn lại ${company.postLimit} bài)`,
+        value: "default",
+      });
+    }
+
+    if (vpb) {
+      list.push({
+        label: `Sử dụng gói VIP (${vpb.vipPackage.name}) (còn lại ${vpb.remainingPosts}/${vpb.vipPackage.numPost} bài)`,
+        value: vpb.vipPackage.id,
+      });
+    }
+
+    return list;
+  }, [company, vpb]);
 
   const mutation = useMutation({
     mutationFn: (data: JobFormValues) => createJob(data),
@@ -226,6 +263,26 @@ const CreateJob = () => {
                 onChange={(date) => date && onChange(formatDate(date, DATE_PATTERN.DATE))}
                 className="w-full"
               />
+            )}
+          />
+
+          <FormItemCustom
+            form={form}
+            name="vipPackage"
+            label="Gói VIP"
+            renderInput={({ value, onChange }) => (
+              <Select value={String(value)} onValueChange={onChange}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Chọn gói VIP" />
+                </SelectTrigger>
+                <SelectContent>
+                  {vpSelect.map((item) => (
+                    <SelectItem key={item.value} value={item.value}>
+                      {item.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             )}
           />
 

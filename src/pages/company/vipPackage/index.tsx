@@ -1,9 +1,13 @@
 import VipPackageCard from "@/components/company/vipPackageCard"
+import { Button } from "@/components/ui/button";
+import { ROUTE_PATH } from "@/constants";
 import { useVipPackageService } from "@/service/vip.service"
 import { useQuery } from "@tanstack/react-query"
+import { useNavigate } from "react-router-dom";
 
 const index = () => {
     const { getVipPackagesForCompany } = useVipPackageService();
+    const navigate = useNavigate();
     const { data: vp } = useQuery({
         queryKey: ['company-vip-packages'],
         queryFn: () =>
@@ -36,8 +40,14 @@ const index = () => {
 
     return (
         <div className="space-y-6 dark:text-white">
-            <div className="mx-auto max-w-7xl text-center">
-                <h2 className="text-balance text-cyan-600 dark:text-cyan-400 text-4xl md:text-5xl font-bold mb-10 ">Gói VIP cho Công Ty</h2>
+            <div className="mx-auto max-w-7xl text-center flex items-center justify-between">
+                <h2 className="text-cyan-600 dark:text-cyan-400 text-4xl md:text-5xl font-bold">Gói VIP cho Công Ty</h2>
+                <Button
+                    onClick={() => navigate(ROUTE_PATH.COMPANY.VIP_PACKAGE.BOUGHT)}
+                    className="cursor-pointer bg-gradient-to-r from-cyan-600 to-teal-600 text-white shadow-lg hover:from-cyan-700 hover:to-teal-700"
+                >
+                    Gói VIP của tôi
+                </Button>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-max">
                 {vp?.data.map((pkg) => (

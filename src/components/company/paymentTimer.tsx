@@ -9,7 +9,7 @@ interface PaymentTimerProps {
     totalTime?: number;
     onTimeout?: () => void;
 }
-
+//TODO: xử lý khi dù chuyển trang thì khi time out vẫn tự động chuyển trạng thái thành FAILED
 const PaymentTimer = ({ totalTime = 60, onTimeout }: PaymentTimerProps) => {
     const { changeStatusFailed } = useOrderService();
     const { id } = useParams();

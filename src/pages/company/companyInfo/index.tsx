@@ -172,6 +172,11 @@ const index = () => {
         </div>
 
         <div className="space-y-2">
+          <Label>Số lượt đăng tin miễn phí còn lại</Label>
+          <p className="bg-muted rounded p-2 text-sm">{company?.postLimit}</p>
+        </div>
+
+        <div className="space-y-2">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-2">
               <FileText className="h-5 w-5" />

@@ -2,7 +2,7 @@ import { toast } from 'sonner';
 
 import { axiosClient } from '@/config/axios';
 import { END_POINT } from '@/constants';
-import { IListResponse, IParamsBase, IResponse, IVipPackage } from '@/interface';
+import { ICompanyVipPackage, IListResponse, IParamsBase, IResponse, IVipPackage } from '@/interface';
 import { SkillFormValues } from '@/schema/skill.schema';
 
 export const useVipPackageService = () => {
@@ -68,6 +68,17 @@ export const useVipPackageService = () => {
     }
   };
 
+  const getVipPackageBought = async () => {
+    const res: IResponse<ICompanyVipPackage> = await axiosClient.get(END_POINT.COMPANY.VIP_PACKAGE.BOUGHT);
+    if (!res.success) {
+      toast.error(res.error_code);
+
+      return;
+    } else {
+      return res.data;
+    }
+  };
+
   return {
     getVipPackages,
     getVipPackageById,
@@ -75,5 +86,6 @@ export const useVipPackageService = () => {
     editVipPackage,
     deleteVipPackage,
     getVipPackagesForCompany,
+    getVipPackageBought,
   };
 };

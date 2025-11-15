@@ -20,4 +20,5 @@ export interface ICompany {
   account: {
     isLocked: boolean;
   };
+  postLimit: number;
 }
