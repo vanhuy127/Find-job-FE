@@ -4,3 +4,4 @@ export * from './endpoint';
 export * from './datePattern';
 export * from './sidebarItem';
 export * from './regex';
+export * from './vipPackage';

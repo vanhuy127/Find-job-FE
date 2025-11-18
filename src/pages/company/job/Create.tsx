@@ -54,7 +54,7 @@ const CreateJob = () => {
       salaryMax: 0,
       endDate: formatDate(new Date(), DATE_PATTERN.DATE),
       skills: [],
-      vipPackage: 'none',
+      vipPackage: '',
     },
   });
 
@@ -90,9 +90,7 @@ const CreateJob = () => {
   }, [provinces]);
 
   const vpSelect: { label: string; value: string }[] = useMemo(() => {
-    const list = [
-      { label: "Không sử dụng", value: "none" },
-    ];
+    const list = [];
 
     if (company && company.postLimit > 0) {
       list.push({

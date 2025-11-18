@@ -1,7 +1,7 @@
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
-import { JOB_LEVEL_SHOWS, JOB_TYPE_SHOWS, ROUTE_PATH } from "@/constants"
+import { JOB_LEVEL_SHOWS, JOB_TYPE_SHOWS, ROUTE_PATH, VIP_STYLES } from "@/constants"
 import { IJob } from "@/interface"
 import { formatSalary, numDateSince } from "@/utils"
 import { Building, Clock, DollarSign, MapPin } from "lucide-react"
@@ -9,12 +9,34 @@ import { useNavigate } from "react-router-dom"
 const JobItem = ({ job }: { job: IJob }) => {
     const navigate = useNavigate();
 
+    const styteIdx = job.vipPackage?.priority ?? -1;
+    const vipStyle = VIP_STYLES[styteIdx];
+
+    let cardClass =
+        "relative transition-all duration-500 border rounded-2xl p-6 " +
+        "hover:scale-[1.02] group cursor-pointer overflow-hidden ";
+
+    if (styteIdx === -1) {
+        cardClass +=
+            "border-gray-200 bg-white/80 backdrop-blur-sm hover:shadow-2xl hover:shadow-cyan-500/20 " +
+            "dark:border-gray-700 dark:bg-gray-800 dark:hover:shadow-cyan-400/20";
+    } else {
+        cardClass += `
+            ${vipStyle.border} 
+            ${vipStyle.ring} 
+            ${vipStyle.shadow}
+            ${vipStyle.glow}
+            ${vipStyle.bg} 
+            ${vipStyle.bgDark}
+        `;
+    }
+
     return (
         <Card
             key={job.id}
-            className="hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 border-gray-200/50 bg-white/80 backdrop-blur-sm hover:scale-[1.02] group cursor-pointer dark:border-gray-700/50 dark:bg-gray-800/80 dark:hover:shadow-cyan-400/20"
+            className={cardClass}
         >
-            <CardContent className="p-6 md:p-8">
+            <CardContent className="px-6 md:px-8">
                 <div className="flex flex-col md:flex-row md:justify-between md:items-start gap-6">
                     <div className="flex-1">
                         <div className="flex flex-col sm:flex-row items-start gap-4 mb-4">
@@ -25,8 +47,9 @@ const JobItem = ({ job }: { job: IJob }) => {
                                     className="h-14 w-14 rounded-lg object-cover"
                                 />
                             </div>
+
                             <div className="flex-1">
-                                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2 group-hover:text-cyan-600 transition-colors cursor-pointer dark:text-white dark:group-hover:text-cyan-400"> {/* 🔥 changed: font responsive */}
+                                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-2 dark:text-white">
                                     {job.title}
                                 </h3>
                                 <div className="flex flex-wrap items-center gap-2 mb-3">
@@ -47,14 +70,18 @@ const JobItem = ({ job }: { job: IJob }) => {
                                     <MapPin className="h-5 w-5 text-cyan-500" />
                                     <span className="font-medium">{job.province.name}</span>
                                 </span>
+
                                 <span className="flex items-center gap-2">
                                     <DollarSign className="h-5 w-5 text-green-500" />
-                                    <span className="font-medium text-green-600 dark:text-green-400">{formatSalary(job?.salaryMin || 0, job?.salaryMax || 0)}</span>
+                                    <span className="font-medium text-green-600 dark:text-green-400">
+                                        {formatSalary(job.salaryMin, job.salaryMax)}
+                                    </span>
                                 </span>
+
                                 <span className="flex items-center gap-2">
                                     <Clock className="h-5 w-5 text-purple-500" />
                                     <span>
-                                        {job?.jobType ? JOB_TYPE_SHOWS[job.jobType] : ''} • {numDateSince(job.createdAt)}
+                                        {JOB_TYPE_SHOWS[job.jobType]} • {numDateSince(job.createdAt)}
                                     </span>
                                 </span>
                             </div>
@@ -68,7 +95,7 @@ const JobItem = ({ job }: { job: IJob }) => {
                                     <Badge
                                         key={skill.id}
                                         variant="outline"
-                                        className={`border-cyan-200 bg-cyan-50 px-3 py-1 text-cyan-700 cursor-pointer transition-all duration-200 dark:border-cyan-800 dark:bg-cyan-900 dark:text-cyan-300`}
+                                        className="border-cyan-200 bg-cyan-50 px-3 py-1 text-cyan-700 cursor-pointer dark:border-cyan-800 dark:bg-cyan-900 dark:text-cyan-300"
                                     >
                                         {skill.name}
                                     </Badge>
@@ -78,7 +105,12 @@ const JobItem = ({ job }: { job: IJob }) => {
                     </div>
 
                     <div className="flex flex-col sm:flex-row md:flex-col gap-3 md:ml-8">
-                        <Button onClick={() => navigate(ROUTE_PATH.USER.JOBS.DETAILS.LINK(job.id))} className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white px-6 md:px-8 py-2 md:py-3 rounded-xl shadow-lg hover:shadow-xl transition-all text-sm md:text-base">
+                        <Button
+                            onClick={() =>
+                                navigate(ROUTE_PATH.USER.JOBS.DETAILS.LINK(job.id))
+                            }
+                            className="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white px-6 md:px-8 py-2 md:py-3 rounded-xl shadow-lg hover:shadow-xl transition-all text-sm md:text-base"
+                        >
                             Ứng tuyển ngay
                         </Button>
                     </div>

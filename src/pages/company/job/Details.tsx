@@ -220,6 +220,16 @@ const Details = () => {
                   {isJobExpired(typeof data?.endDate === 'string' ? data.endDate : '') && ' (Expired)'}
                 </p>
               </div>
+
+              <div className="space-y-2">
+                <Label className="flex items-center space-x-2">
+                  <DollarSign className="h-4 w-4" />
+                  <span>Gói VIP</span>
+                </Label>
+                <p className="bg-muted rounded p-3 text-sm font-medium text-green-600">
+                  {data && data.vipPackage ? data.vipPackage.name : '-'}
+                </p>
+              </div>
             </div>
 
             <div className="space-y-2">

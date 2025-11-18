@@ -19,11 +19,11 @@ export const TableData = ({ data, isLoading = false }: TableDataProps) => {
         <TableRow>
           <TableHead className="w-10 text-center">ID</TableHead>
           <TableHead className="text-center">Tên việc làm</TableHead>
-          {/* <TableHead className="text-center">Công ty</TableHead> */}
           <TableHead className="text-center">Loại công việc</TableHead>
           <TableHead className="text-center">Mức độ</TableHead>
           <TableHead className="text-center">Địa chỉ</TableHead>
           <TableHead className="text-center">Tỉnh thành</TableHead>
+          <TableHead className="text-center">Gói VIP</TableHead>
           <TableHead className="text-center">Ngày tạo</TableHead>
           <TableHead className="text-center">Cập nhật cuối</TableHead>
           <TableHead className="text-center">Thao tác</TableHead>
@@ -37,11 +37,11 @@ export const TableData = ({ data, isLoading = false }: TableDataProps) => {
             <TableRow key={job.id} className="hover:bg-cyan-50/50 dark:hover:bg-gray-700">
               <TableCell>#{index + 1}</TableCell>
               <TableCell>{job.title}</TableCell>
-              {/* <TableCell>{job.company.name}</TableCell> */}
               <TableCell>{JOB_TYPE_SHOWS[job.jobType]}</TableCell>
               <TableCell>{JOB_LEVEL_SHOWS[job.level]}</TableCell>
               <TableCell>{job.address}</TableCell>
               <TableCell>{job.province.name}</TableCell>
+              <TableCell>{job.vipPackage ? job.vipPackage.name : '-'}</TableCell>
               <TableCell>{formatDate(job.createdAt, DATE_PATTERN.DATE_TIME)}</TableCell>
               <TableCell>{formatDate(job.updatedAt, DATE_PATTERN.DATE_TIME)}</TableCell>
               <TableCell className="text-center">

@@ -3,6 +3,7 @@ import { JobLevel, JobType } from '@/types';
 import { ICompany } from './company';
 import { IProvince } from './province';
 import { ISkill } from './skill';
+import { IVipPackage } from './vipPackage';
 
 export interface IJob {
   id: string;
@@ -21,4 +22,5 @@ export interface IJob {
   province: IProvince;
   company: ICompany;
   skills: ISkill[];
+  vipPackage?: IVipPackage;
 }

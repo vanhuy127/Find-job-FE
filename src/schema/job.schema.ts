@@ -27,7 +27,7 @@ export const jobSchema = z
     skills: z.array(z.string()).nonempty('Vui lòng chọn ít nhất 1 kỹ năng'),
     vipPackage: z
       .string()
-      .refine((val) => val === 'none' || val === 'default' || /^[0-9a-fA-F-]{36}$/.test(val), {
+      .refine((val) => val === 'default' || /^[0-9a-fA-F-]{36}$/.test(val), {
         message: 'Vui lòng chọn loại gói VIP',
       })
       .optional(),
