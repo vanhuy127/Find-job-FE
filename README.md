@@ -30,6 +30,7 @@
 - Xem danh sách ứng viên đã nộp hồ sơ.
 - Quản lý công ty, logo, mô tả, thông tin liên hệ.
 - Xem CV ứng viên.
+- Mua và quản lý gói VIP
 
 ### 🧑‍💻 Dành cho quản trị viên (Admin)
 
@@ -45,6 +46,7 @@
 - Backend: Node.js + Express + TypeScript
 - Database: MySQL + Prisma ORM
 - Storage: Cloudinary (upload CV, ảnh)
+- Thanh toán: Sepay
 - Auth: JWT (Access & Refresh Token)
 
 ---
