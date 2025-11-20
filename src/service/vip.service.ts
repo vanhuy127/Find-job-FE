@@ -1,7 +1,7 @@
 import { toast } from 'sonner';
 
 import { axiosClient } from '@/config/axios';
-import { END_POINT } from '@/constants';
+import { END_POINT, MESSAGE_CODE } from '@/constants';
 import { ICompanyVipPackage, IListResponse, IParamsBase, IResponse, IVipPackage } from '@/interface';
 import { SkillFormValues } from '@/schema/skill.schema';
 
@@ -21,7 +21,7 @@ export const useVipPackageService = () => {
   const getVipPackageById = async (id: string) => {
     const res: IResponse<IVipPackage> = await axiosClient.get(END_POINT.ADMIN.VIP_PACKAGE.GET_BY_ID(id));
     if (!res.success) {
-      toast.error(res.error_code);
+      toast.error(MESSAGE_CODE[res.error_code as keyof typeof MESSAGE_CODE]);
 
       return;
     } else {
@@ -32,11 +32,11 @@ export const useVipPackageService = () => {
   const createVipPackage = async (data: SkillFormValues) => {
     const res: IResponse<IVipPackage> = await axiosClient.post(END_POINT.ADMIN.VIP_PACKAGE.CREATE, data);
     if (!res.success) {
-      toast.error(res.error_code);
+      toast.error(MESSAGE_CODE[res.error_code as keyof typeof MESSAGE_CODE]);
 
       return;
     } else {
-      toast.success(res.message_code);
+      toast.success(MESSAGE_CODE[res.message_code as keyof typeof MESSAGE_CODE]);
 
       return res.data;
     }
@@ -45,11 +45,11 @@ export const useVipPackageService = () => {
   const editVipPackage = async (id: string, data: SkillFormValues) => {
     const res: IResponse<IVipPackage> = await axiosClient.put(END_POINT.ADMIN.VIP_PACKAGE.EDIT(id), data);
     if (!res.success) {
-      toast.error(res.error_code);
+      toast.error(MESSAGE_CODE[res.error_code as keyof typeof MESSAGE_CODE]);
 
       return;
     } else {
-      toast.success(res.message_code);
+      toast.success(MESSAGE_CODE[res.message_code as keyof typeof MESSAGE_CODE]);
 
       return res.data;
     }
@@ -58,11 +58,11 @@ export const useVipPackageService = () => {
   const deleteVipPackage = async (id: string) => {
     const res: IResponse<boolean> = await axiosClient.delete(END_POINT.ADMIN.VIP_PACKAGE.DELETE(id));
     if (!res.success) {
-      toast.error(res.error_code);
+      toast.error(MESSAGE_CODE[res.error_code as keyof typeof MESSAGE_CODE]);
 
       return;
     } else {
-      toast.success(res.message_code);
+      toast.success(MESSAGE_CODE[res.message_code as keyof typeof MESSAGE_CODE]);
 
       return res.data;
     }
@@ -71,7 +71,7 @@ export const useVipPackageService = () => {
   const getVipPackageBought = async () => {
     const res: IResponse<ICompanyVipPackage> = await axiosClient.get(END_POINT.COMPANY.VIP_PACKAGE.BOUGHT);
     if (!res.success) {
-      toast.error(res.error_code);
+      toast.error(MESSAGE_CODE[res.error_code as keyof typeof MESSAGE_CODE]);
 
       return;
     } else {

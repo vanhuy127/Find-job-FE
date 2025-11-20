@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosInstance, AxiosResponse, CreateAxiosDefaults } from 'axios';
 import { toast } from 'sonner';
 
-import { END_POINT, LOCAL_STORAGE_KEY, SYSTEM_ERROR } from '@/constants';
+import { END_POINT, LOCAL_STORAGE_KEY, MESSAGE_CODE, SYSTEM_ERROR } from '@/constants';
 import { IResponse } from '@/interface';
 import { getLocalStorage, removeLocalStorage, setLocalStorage } from '@/utils';
 
@@ -56,21 +56,18 @@ const createAxiosInstance = (
         return Promise.reject(error);
       }
 
-      // ✅ Trường hợp accessToken hết hạn → gọi refresh từ cookie
-
-      if (error.response?.status === 410 && originalRequest && !originalRequest._retry) {
-        originalRequest._retry = true; // Prevent infinite loop
-
+      if (error.response?.status === 410 && originalRequest) {
         if (!refreshTokenPromise) {
+          const refreshToken = getLocalStorage(LOCAL_STORAGE_KEY.REFRESH_TOKEN);
           refreshTokenPromise = instance
-            .get(END_POINT.AUTH.REFRESH_TOKEN)
+            .post(END_POINT.AUTH.REFRESH_TOKEN, { refreshToken })
             .then((res) => {
               const { accessToken } = res.data;
               setLocalStorage(LOCAL_STORAGE_KEY.ACCESS_TOKEN, accessToken);
             })
             .catch((_error) => {
               removeLocalStorage(LOCAL_STORAGE_KEY.ACCESS_TOKEN);
-              toast.error('Phiên đăng nhập đã hết hạn.');
+              removeLocalStorage(LOCAL_STORAGE_KEY.REFRESH_TOKEN);
 
               return Promise.reject(_error);
             })
@@ -78,34 +75,19 @@ const createAxiosInstance = (
               refreshTokenPromise = null;
             });
         }
-        try {
-          await refreshTokenPromise;
 
-          // Update authorization header with new token
-          const newToken = getLocalStorage(LOCAL_STORAGE_KEY.ACCESS_TOKEN);
-          if (newToken) {
-            originalRequest.headers.Authorization = `Bearer ${newToken}`;
-          }
-
-          // Retry original request
-          return instance(originalRequest);
-        } catch (refreshError) {
-          return Promise.reject(refreshError);
-        }
+        return refreshTokenPromise.then(() => instance(originalRequest));
       }
 
       if (error.response?.status !== 410) {
         if (error.response?.status === 401) {
           removeLocalStorage(LOCAL_STORAGE_KEY.ACCESS_TOKEN);
-          toast.error('Truy cập không được phép.');
-
-          return Promise.reject(error);
+          removeLocalStorage(LOCAL_STORAGE_KEY.REFRESH_TOKEN);
         }
-        // ✅ Xử lý lỗi thông thường khác
         const { error_code } = error.response?.data as IResponse<null>;
         if (error_code) {
-          const errorKey = error_code;
-          toast.error(errorKey as string);
+          const errorKey = MESSAGE_CODE[error_code as keyof typeof MESSAGE_CODE];
+          toast.error(errorKey);
         }
       }
 

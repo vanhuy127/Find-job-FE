@@ -110,7 +110,7 @@ const TopJobs = () => {
                         ))}
                       </div>
                     </div>
-                    <Button className="mt-auto w-full rounded-xl bg-cyan-500 py-3 font-semibold text-white hover:bg-cyan-600">
+                    <Button onClick={() => navigate(ROUTE_PATH.USER.JOBS.DETAILS.LINK(job.id))} className="mt-auto w-full rounded-xl bg-cyan-500 py-3 font-semibold text-white hover:bg-cyan-600">
                       Ứng tuyển ngay
                     </Button>
                   </div>

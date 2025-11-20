@@ -1,7 +1,7 @@
 import { toast } from 'sonner';
 
 import { axiosClient } from '@/config/axios';
-import { END_POINT } from '@/constants';
+import { END_POINT, MESSAGE_CODE } from '@/constants';
 import { ICompany, IJob, IListResponse, IParamsBase, IResponse } from '@/interface';
 import { CompanyFormValues } from '@/schema/company.schema';
 
@@ -31,9 +31,9 @@ export const useCompanyService = () => {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
     if (!res.success) {
-      toast.error(res.error_code);
+      toast.error(MESSAGE_CODE[res.error_code as keyof typeof MESSAGE_CODE]);
     } else {
-      toast.success(res.message_code);
+      toast.success(MESSAGE_CODE[res.message_code as keyof typeof MESSAGE_CODE]);
     }
   };
 
@@ -79,11 +79,11 @@ export const useCompanyService = () => {
       reasonReject,
     });
     if (!res.success) {
-      toast.error(res.error_code);
+      toast.error(MESSAGE_CODE[res.error_code as keyof typeof MESSAGE_CODE]);
 
       return;
     } else {
-      toast.success(res.message_code);
+      toast.success(MESSAGE_CODE[res.message_code as keyof typeof MESSAGE_CODE]);
 
       return res.data;
     }

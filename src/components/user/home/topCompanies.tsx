@@ -66,7 +66,7 @@ const TopCompanies = () => {
                   </div>
                 </div>
 
-                <Button className="mt-8 w-full rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 py-3 font-semibold text-white transition-all duration-300 hover:from-cyan-600 hover:to-blue-600">
+                <Button onClick={() => navigate(ROUTE_PATH.USER.COMPANIES.DETAILS.LINK(company.id))} className="mt-8 w-full rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 py-3 font-semibold text-white transition-all duration-300 hover:from-cyan-600 hover:to-blue-600">
                   Xem việc làm
                 </Button>
               </CardContent>

@@ -1,7 +1,7 @@
 import { toast } from 'sonner';
 
 import { axiosClient } from '@/config/axios';
-import { END_POINT } from '@/constants';
+import { END_POINT, MESSAGE_CODE } from '@/constants';
 import { IListResponse, IParamsBase, IResponse, IResume, IResumeExtend } from '@/interface';
 import { ResumeStatusFormValues } from '@/schema/resume.scheme';
 
@@ -35,11 +35,11 @@ export const useResumeService = () => {
   const changeStatus = async (id: string, data: ResumeStatusFormValues) => {
     const res: IResponse<boolean> = await axiosClient.patch(END_POINT.COMPANY.RESUMES.CHANGE_STATUS(id), data);
     if (!res.success) {
-      toast.error(res.error_code);
+      toast.error(MESSAGE_CODE[res.error_code as keyof typeof MESSAGE_CODE]);
 
       return;
     } else {
-      toast.success(res.message_code);
+      toast.success(MESSAGE_CODE[res.message_code as keyof typeof MESSAGE_CODE]);
 
       return res.data;
     }
@@ -56,9 +56,9 @@ export const useResumeService = () => {
     });
 
     if (!res.success) {
-      toast.error(res.error_code);
+      toast.error(MESSAGE_CODE[res.error_code as keyof typeof MESSAGE_CODE]);
     } else {
-      toast.success(res.message_code);
+      toast.success(MESSAGE_CODE[res.message_code as keyof typeof MESSAGE_CODE]);
     }
 
     return res.data;

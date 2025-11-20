@@ -1,7 +1,7 @@
 import { toast } from 'sonner';
 
 import { axiosClient } from '@/config/axios';
-import { END_POINT } from '@/constants';
+import { END_POINT, MESSAGE_CODE } from '@/constants';
 import { ICompanyVipPackage, IResponse } from '@/interface';
 import { OrderFormValues } from '@/schema/order.schema';
 
@@ -9,7 +9,7 @@ export const useOrderService = () => {
   const getOrderById = async (id: string) => {
     const res: IResponse<ICompanyVipPackage> = await axiosClient.get(END_POINT.COMPANY.ORDER.GET_BY_ID(id));
     if (!res.success) {
-      toast.error(res.error_code);
+      toast.error(MESSAGE_CODE[res.error_code as keyof typeof MESSAGE_CODE]);
 
       return;
     } else {
@@ -20,11 +20,11 @@ export const useOrderService = () => {
   const createOrder = async (data: OrderFormValues) => {
     const res: IResponse<ICompanyVipPackage> = await axiosClient.post(END_POINT.COMPANY.ORDER.CREATE, data);
     if (!res.success) {
-      toast.error(res.error_code);
+      toast.error(MESSAGE_CODE[res.error_code as keyof typeof MESSAGE_CODE]);
 
       return;
     } else {
-      toast.success(res.message_code);
+      toast.success(MESSAGE_CODE[res.message_code as keyof typeof MESSAGE_CODE]);
 
       return res.data;
     }
@@ -35,11 +35,11 @@ export const useOrderService = () => {
       END_POINT.COMPANY.ORDER.CHANGE_STATUS_FAILED(id),
     );
     if (!res.success) {
-      toast.error(res.error_code);
+      toast.error(MESSAGE_CODE[res.error_code as keyof typeof MESSAGE_CODE]);
 
       return;
     } else {
-      toast.success(res.message_code);
+      toast.success(MESSAGE_CODE[res.message_code as keyof typeof MESSAGE_CODE]);
 
       return res.data;
     }

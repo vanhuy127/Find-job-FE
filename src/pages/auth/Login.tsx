@@ -14,7 +14,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 
 import { useAuthService } from '@/service/auth.service';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ROUTE_PATH } from '@/constants';
 
 const schema = z.object({
@@ -28,6 +28,9 @@ const Login = () => {
   const { login } = useAuthService();
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const returnUrl = searchParams.get("returnUrl");
 
   const {
     register,
@@ -43,6 +46,7 @@ const Login = () => {
 
   const loginMutation = useMutation({
     mutationFn: ({ email, password }: FormData) => login(email, password),
+    onSuccess: () => navigate(returnUrl || ROUTE_PATH.USER.HOME, { replace: true })
   });
 
   const onSubmit = async (data: FormData) => {

@@ -1,7 +1,7 @@
 import { toast } from 'sonner';
 
 import { axiosClient } from '@/config/axios';
-import { END_POINT } from '@/constants';
+import { END_POINT, MESSAGE_CODE } from '@/constants';
 import { IJob, IListResponse, IParamsBase, IResponse, IResume } from '@/interface';
 import { JobFormValues } from '@/schema/job.schema';
 
@@ -56,11 +56,11 @@ export const useJobService = () => {
   const createJob = async (data: JobFormValues) => {
     const res: IResponse<IJob> = await axiosClient.post(END_POINT.COMPANY.JOBS.CREATE, data);
     if (!res.success) {
-      toast.error(res.error_code);
+      toast.error(MESSAGE_CODE[res.error_code as keyof typeof MESSAGE_CODE]);
 
       return;
     } else {
-      toast.success(res.message_code);
+      toast.success(MESSAGE_CODE[res.message_code as keyof typeof MESSAGE_CODE]);
 
       return res.data;
     }
@@ -69,11 +69,11 @@ export const useJobService = () => {
   const editJob = async (id: string, data: JobFormValues) => {
     const res: IResponse<IJob> = await axiosClient.put(END_POINT.COMPANY.JOBS.EDIT(id), data);
     if (!res.success) {
-      toast.error(res.error_code);
+      toast.error(MESSAGE_CODE[res.error_code as keyof typeof MESSAGE_CODE]);
 
       return;
     } else {
-      toast.success(res.message_code);
+      toast.success(MESSAGE_CODE[res.message_code as keyof typeof MESSAGE_CODE]);
 
       return res.data;
     }
@@ -82,11 +82,11 @@ export const useJobService = () => {
   const deleteJob = async (id: string) => {
     const res: IResponse<boolean> = await axiosClient.patch(END_POINT.COMPANY.JOBS.DELETE(id));
     if (!res.success) {
-      toast.error(res.error_code);
+      toast.error(MESSAGE_CODE[res.error_code as keyof typeof MESSAGE_CODE]);
 
       return;
     } else {
-      toast.success(res.message_code);
+      toast.success(MESSAGE_CODE[res.message_code as keyof typeof MESSAGE_CODE]);
 
       return res.data;
     }

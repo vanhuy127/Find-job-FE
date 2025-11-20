@@ -1,6 +1,6 @@
 import React, { lazy } from 'react';
 
-import { Navigate, type RouteObject, useLocation } from 'react-router-dom';
+import { Navigate, useLocation, type RouteObject } from 'react-router-dom';
 
 import { ROLE } from '@/constants';
 import { ROUTE_PATH } from '@/constants/router';

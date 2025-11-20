@@ -1,7 +1,7 @@
 import { toast } from 'sonner';
 
 import { axiosClient } from '@/config/axios';
-import { END_POINT, LOCAL_STORAGE_KEY } from '@/constants';
+import { END_POINT, LOCAL_STORAGE_KEY, MESSAGE_CODE } from '@/constants';
 import { IResponse, IUserAccount } from '@/interface';
 import { RegisterCompanyFormValues, RegisterFormValues } from '@/schema/auth.schema';
 import { useAuthStore } from '@/store';
@@ -36,30 +36,27 @@ export const useAuthService = () => {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
     if (!res.success) {
-      toast.error(res.error_code);
+      toast.error(MESSAGE_CODE[res.error_code as keyof typeof MESSAGE_CODE]);
     } else {
-      toast.success(res.message_code);
+      toast.success(MESSAGE_CODE[res.message_code as keyof typeof MESSAGE_CODE]);
     }
   };
 
   const login = async (email: string, password: string) => {
     const res = await axiosClient.post(END_POINT.AUTH.LOGIN, { email, password });
     if (res.data) {
-      const { accessToken, id, email, role } = res.data;
+      const { accessToken, refreshToken, id, email, role } = res.data;
       setUser({ id, email, role });
       setLocalStorage(LOCAL_STORAGE_KEY.ACCESS_TOKEN, accessToken);
-      toast.success('Login success');
+      setLocalStorage(LOCAL_STORAGE_KEY.REFRESH_TOKEN, refreshToken);
+      toast.success(MESSAGE_CODE.LOGIN_SUCCESS);
     }
   };
 
   const logout = async () => {
-    const res: IResponse<null> = await axiosClient.get(END_POINT.AUTH.LOGOUT);
-
-    if (res && res.success) {
-      removeLocalStorage(LOCAL_STORAGE_KEY.ACCESS_TOKEN);
-      setUser(null);
-      toast.success('Logout success');
-    }
+    removeLocalStorage(LOCAL_STORAGE_KEY.ACCESS_TOKEN);
+    removeLocalStorage(LOCAL_STORAGE_KEY.REFRESH_TOKEN);
+    setUser(null);
   };
 
   const getMe = async () => {

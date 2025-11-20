@@ -1,7 +1,7 @@
 import { toast } from 'sonner';
 
 import { axiosClient } from '@/config/axios';
-import { END_POINT } from '@/constants';
+import { END_POINT, MESSAGE_CODE } from '@/constants';
 import { IListResponse, IParamsBase, IResponse, ISkill } from '@/interface';
 import { SkillFormValues } from '@/schema/skill.schema';
 
@@ -15,7 +15,7 @@ export const useSkillService = () => {
   const getSkillById = async (id: string) => {
     const res: IResponse<ISkill> = await axiosClient.get(END_POINT.ADMIN.SKILL.GET_BY_ID(id));
     if (!res.success) {
-      toast.error(res.error_code);
+      toast.error(MESSAGE_CODE[res.error_code as keyof typeof MESSAGE_CODE]);
 
       return;
     } else {
@@ -26,11 +26,11 @@ export const useSkillService = () => {
   const createSkill = async (data: SkillFormValues) => {
     const res: IResponse<ISkill> = await axiosClient.post(END_POINT.ADMIN.SKILL.CREATE, data);
     if (!res.success) {
-      toast.error(res.error_code);
+      toast.error(MESSAGE_CODE[res.error_code as keyof typeof MESSAGE_CODE]);
 
       return;
     } else {
-      toast.success(res.message_code);
+      toast.success(MESSAGE_CODE[res.message_code as keyof typeof MESSAGE_CODE]);
 
       return res.data;
     }
@@ -39,11 +39,11 @@ export const useSkillService = () => {
   const editSkill = async (id: string, data: SkillFormValues) => {
     const res: IResponse<ISkill> = await axiosClient.put(END_POINT.ADMIN.SKILL.EDIT(id), data);
     if (!res.success) {
-      toast.error(res.error_code);
+      toast.error(MESSAGE_CODE[res.error_code as keyof typeof MESSAGE_CODE]);
 
       return;
     } else {
-      toast.success(res.message_code);
+      toast.success(MESSAGE_CODE[res.message_code as keyof typeof MESSAGE_CODE]);
 
       return res.data;
     }
@@ -52,11 +52,11 @@ export const useSkillService = () => {
   const deleteSkill = async (id: string) => {
     const res: IResponse<boolean> = await axiosClient.delete(END_POINT.ADMIN.SKILL.DELETE(id));
     if (!res.success) {
-      toast.error(res.error_code);
+      toast.error(MESSAGE_CODE[res.error_code as keyof typeof MESSAGE_CODE]);
 
       return;
     } else {
-      toast.success(res.message_code);
+      toast.success(MESSAGE_CODE[res.message_code as keyof typeof MESSAGE_CODE]);
 
       return res.data;
     }
