@@ -22,6 +22,7 @@ export const TableData = ({ data, isLoading = false }: TableDataProps) => {
           <TableHead className="text-center">Tên công việc</TableHead>
           <TableHead className="text-center">Trạng thái</TableHead>
           <TableHead className="text-center">Ngày ứng tuyển</TableHead>
+          <TableHead className="text-center">Cập nhật cuối</TableHead>
           <TableHead className="text-center">Thao tác</TableHead>
         </TableRow>
       </TableHeader>
@@ -36,6 +37,7 @@ export const TableData = ({ data, isLoading = false }: TableDataProps) => {
               <TableCell>{resume.job.title}</TableCell>
               <TableCell>{resume.status}</TableCell>
               <TableCell>{formatDate(resume.createdAt, DATE_PATTERN.DATE_TIME)}</TableCell>
+              <TableCell>{formatDate(resume.updatedAt, DATE_PATTERN.DATE_TIME)}</TableCell>
               <TableCell className="text-center">
                 <Action data={resume} />
               </TableCell>

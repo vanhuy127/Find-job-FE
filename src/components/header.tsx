@@ -45,7 +45,7 @@ const Header = () => {
           <div className="flex items-center">
             <Link to="/" className="group flex items-center space-x-2">
               <span className="text-xl font-bold text-slate-800 dark:text-slate-100">
-                Yuh<span className="text-cyan-600 dark:text-cyan-400">nav</span>
+                Yuh<span className="text-cyan-600 dark:text-cyan-400">nav</span> Jobs
               </span>
             </Link>
           </div>

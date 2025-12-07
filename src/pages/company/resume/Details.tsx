@@ -263,7 +263,9 @@ const Details = () => {
                     <p className="text-sm text-gray-600 dark:text-gray-400">{resume?.resumePath}</p>
                   </div>
                 </div>
-                <Button variant="outline" size="sm" className="flex items-center gap-2 bg-transparent">
+                <Button onClick={() =>
+                  window.open(resume?.resumePath, "_blank")
+                } variant="outline" size="sm" className="flex items-center gap-2 bg-transparent">
                   <Eye className="h-4 w-4" />
                   Xem
                 </Button>
